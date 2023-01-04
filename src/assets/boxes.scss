@@ -1,0 +1,52 @@
+.App {
+  background-color: #f5f6fa;
+  .app-bg {
+    .display_page {
+      padding: 0;
+      margin:0 16em;
+      margin-top: 5em;
+     
+      p {
+        margin: auto;
+      }
+      li{
+        border-radius: 3px;
+        margin: 1em 0;
+        background-color: #ffffff;
+        .btn-group{
+          margin: 1em;
+          padding: 0.4em;
+          border-radius: 3px;
+          color: #5156b3;
+        background-color: #f5f4f6;;  
+        }
+      }
+    }
+    .prf_img{
+        margin: 1em;
+    }
+    .replay_sec {
+      margin:0 16em;
+      background-color: #ffffff;
+      .replay_content{
+        width: 100%;
+        border: 1px solid #f5f5f5;;
+        border-radius: 3px;
+        margin: 1em 0;
+        padding:10px 5px;
+        font-size: 20px;
+        resize: none;
+    
+      }
+      .send{
+        width: 6em;
+        height: 2em;
+        margin:15px 10px;
+        
+        color: #ffffff;
+        border-radius: 3px;
+        background-color: #5156b3;
+      }
+    }
+  }
+}
