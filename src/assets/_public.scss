@@ -74,9 +74,12 @@ textarea {
 .flex{
   display: flex;
 }
-.justify_content_center{
+.justify_center{
   justify-content: center;
 }
-.justify_space_between{
+.justify_between{
   justify-content: space-between;
+}
+.justify_around{
+  justify-content: space-around;
 }
