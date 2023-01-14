@@ -7,28 +7,74 @@
       margin-top: 5em;
 
       li {
-        border-radius: 3px;
+        border-radius: 5px;
         margin: 1em 0;
+        padding: 1em 0.2em;
         background-color: #ffffff;
+        img {
+          width: 30px;
+          height: 30px;
+        }
         .btn-group {
-          margin: 1em;
-          padding: 0.4em;
-          border-radius: 3px;
+          display: grid;
+          height: 4em;
+          justify-content: center;
+          margin: 0.9em;
+          padding: 0.3em;
+          border-radius: 8px;
           color: #5156b3;
+          text-align: center;
           background-color: #f5f4f6;
         }
-        .replies {
-          .current_usr {
-            color: #ffffff;
-            border-radius: 3px;
-            background-color: #5156b3;
+        .widths {
+          width: 100%;
+          .info {
+            align-items: center;
+            text-align: center;
+            p,
+            img {
+              margin: 0.4em;
+            }
           }
-          @import "./modal.scss";
+        }
+        .current_usr {
+          width: 2.5em;
+          height: 1em;
+          font-size: 0.81em;
+          font-weight: 500;
+          padding: 0.2em 0.22em 0.6em;
+          color: #ffffff;
+          border-radius: 3px;
+          background-color: #5156b3;
+          text-align: center;
+          vertical-align: middle;
+          display: table-cell;
+        }
+        textarea{
+          width: 100%;
+          border: 1px solid #f5f5f5;
+          border-radius: 3px;
+          margin: 1em 0;
+          padding: 10px 5px;
+          font-size: 20px;
+          resize: none;
+        }
+      }
+      @import "./modal.scss";
+
+      ul {
+        padding-left: 4em;
+      }
+      .replies {
+        p {
+          span {
+            color: #5156b3;
+          }
         }
       }
     }
     .prf_img {
-      margin: 1em;
+      margin: 1.1em;
     }
     .comment_sec {
       margin: 0 16em;

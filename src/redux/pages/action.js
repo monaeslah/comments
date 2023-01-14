@@ -1,17 +1,27 @@
 import data from "./data.json";
-import { ADD } from "./type";
+import { ADD, DELETE } from "./type";
 // import data from "../../assets/images/avatars"
-export const readJson = (data) => ({
-  type: "GET",
-  payload: data,
-  // return (dispatch) => {
-  //   return require("/data.json");
-  // };
+export const deletAction = (id) => ({
+  type: DELETE,
+  id,
 });
-
-export const replyAction = (reply) => ({
+export function uniqueId() {
+  return Math.random() * 1000;
+}
+export const replyAction = (content, replyingTo, score, createdAt, id) => ({
   type: ADD,
-  payload: reply,
+  payload: {
+    id: uniqueId(),
+    content: content,
+    replyingTo,
+    score,
+    createdAt,
+    user: {
+      username: data.currentUser.username,
+      image: data.currentUser.image.png,
+    },
+    replies: [],
+  },
 });
 
 // "image": {
