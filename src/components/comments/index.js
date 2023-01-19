@@ -19,6 +19,7 @@ const Index = () => {
 
   const addComment = () => {
     dispatch(replyAction(content, replyingTo, score, createdAt));
+    console.log(content, replyingTo, score, createdAt)
   };
   const delet = (id) => {
     dispatch(deletAction(id));
@@ -27,11 +28,11 @@ const Index = () => {
   const openModal = () => {
     setModal(true);
   };
-  const replyComments = (username,id) => {
+  const replyToComments = (username,id) => {
     setInRep(true);
     setCurrentReplayIdClicked(id)
     setReplyingTo(username);
-    console.log("inRep",inRep,id);
+   
   };
   const cancel = () => {
     setModal(false);
@@ -47,7 +48,11 @@ const Index = () => {
         cancel={cancel}
         inRep={inRep}
         replyingTo={replyingTo}
-        replyComments={replyComments}
+        replyToComments={replyToComments}
+        addComment={addComment} 
+        content={content}
+        setContent={setContent}
+
       />
       <ADDComment
         addComment={addComment}

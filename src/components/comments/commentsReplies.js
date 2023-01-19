@@ -43,10 +43,12 @@ const Replies = (props) => {
                       <div className="info flex">
                         <img src={data.user.image.png} alt="" />
                         <p>{data.user.username}</p>
-                        {console.log("repliesssssss====>>>", data)}
+                      
                       </div>
                       <button
-                        onClick={() => props.replyComments(data.user.username,data.id)}
+                        onClick={() =>
+                          props.replyToComments(data.user.username, data.id)
+                        }
                       >
                         reply
                       </button>
@@ -62,11 +64,15 @@ const Replies = (props) => {
             {data.user.username === props.usrname ? (
               <></>
             ) : (
-              
-              data.id==props.currentReplayIdClicked &&  <li className={`flex justify_space_between ${showHideClassName}`}>
-                <ADDComment data={props.data} inRep={props.inRep} repliedTo={data.user.username}/>
-                {console.log("currentReplayIdClicked",props.currentReplayIdClicked )}
-              </li>
+              data.id === props.currentReplayIdClicked && (
+                <li
+                  className={`flex justify_space_between ${showHideClassName}`}
+                >
+                  <ADDComment data={props.data} />
+                  {/* inRep={props.inRep} repliedTo={data.user.username} */}
+               
+                </li>
+              )
             )}
           </ul>
         );
