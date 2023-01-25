@@ -1,9 +1,10 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React from "react";
 const Buttons = (props) => {
+  
   return (
     <div className="btn-group">
       <button>+</button>
-      <p>{props.item}</p>
+      <p>{props.score}</p>
       <button>-</button>
     </div>
   );

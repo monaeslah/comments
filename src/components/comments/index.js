@@ -1,11 +1,14 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deletAction, replyAction } from "../../redux/pages/action";
-import Comment from "./coments";
+import {
+  deletAction,
+  addCommentAction,
+  addReplyAction,
+} from "../../redux/pages/action";
+import Comment from "./comments";
 import ADDComment from "./addComment";
 const Index = () => {
-  // const data = require("../../redux/pages/data.json");
-  const data = useSelector((store) => store.comment);
+  const data = useSelector((store) => store.Comment);
 
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
@@ -18,8 +21,18 @@ const Index = () => {
   const [replyingTo, setReplyingTo] = useState("");
 
   const addComment = () => {
-    dispatch(replyAction(content, replyingTo, score, createdAt));
-    console.log(content, replyingTo, score, createdAt)
+    dispatch(addCommentAction(content, score, createdAt));
+  };
+  const ReplyToComment = () => {
+    dispatch(
+      addReplyAction(
+        currentReplayIdClicked,
+        content,
+        createdAt,
+        score,
+        replyingTo
+      )
+    );
   };
   const delet = (id) => {
     dispatch(deletAction(id));
@@ -28,11 +41,10 @@ const Index = () => {
   const openModal = () => {
     setModal(true);
   };
-  const replyToComments = (username,id) => {
+  const getUserId = (username, id) => {
     setInRep(true);
-    setCurrentReplayIdClicked(id)
+    setCurrentReplayIdClicked(id);
     setReplyingTo(username);
-   
   };
   const cancel = () => {
     setModal(false);
@@ -40,7 +52,7 @@ const Index = () => {
   return (
     <div className="app-bg">
       <Comment
-      currentReplayIdClicked={currentReplayIdClicked}
+        currentReplayIdClicked={currentReplayIdClicked}
         data={data}
         delet={delet}
         modal={modal}
@@ -48,19 +60,17 @@ const Index = () => {
         cancel={cancel}
         inRep={inRep}
         replyingTo={replyingTo}
-        replyToComments={replyToComments}
-        addComment={addComment} 
+        getUserId={getUserId}
+        addComment={addComment}
         content={content}
         setContent={setContent}
-
+        ReplyToComment={ReplyToComment}
       />
       <ADDComment
         addComment={addComment}
         data={data}
         content={content}
         setContent={setContent}
-        
-
       />
     </div>
   );

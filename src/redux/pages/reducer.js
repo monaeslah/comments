@@ -1,13 +1,5 @@
-import { ADD, DELETE } from "./type";
+import { ADDCOMMENT, ADDReply, DELETE } from "./type";
 const data = require("./data.json");
-export const Users = (state = {}, action) => {
-  switch (action.type) {
-    case "GET":
-      return action.payload;
-    default:
-      return state;
-  }
-};
 
 // comments: {
 //     count: action.count,
@@ -21,20 +13,38 @@ export const Users = (state = {}, action) => {
 //   }
 
 const keys = Object.keys(data);
-export const comment = (state = data, action) => {
-  console.log(state);
+export const Comment = (state = data, action) => {
+  console.log("state", state);
   switch (action.type) {
-    case ADD:
+    case ADDCOMMENT:
       return {
         ...state,
         comments: [...state.comments, action.payload],
       };
-    case DELETE:console.log(action.id)
+    case DELETE:
+      console.log(action.id);
       return {
         ...state,
         comments: state.comments.filter((item, index) => item.id !== action.id),
-        replies:state.comments.replies.filter((item, index) => item.id !== action.id)
-        
+        replies: state.comments.replies.filter(
+          (item, index) => item.id !== action.id
+        ),
+      };
+    case ADDReply:
+      const comments = state.comments;
+      const currentComment = comments.find(
+        (item) => item.id === action.payload.id
+      );
+      currentComment.replies = [
+        ...currentComment.replies,
+        action.payload.newReply,
+      ];
+      return {
+        ...state,
+        comments: [
+          ...comments.filter((item) => item.id !== action.payload.id),
+          currentComment,
+        ].sort((a, b) => (a.id > b.id ? 1 : -1)),
       };
 
     default:

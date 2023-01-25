@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+
 import ADDComment from "./addComment";
 
 import Modal from "./delet";
@@ -7,10 +7,11 @@ const Replies = (props) => {
   const showHideClassName = props.inRep ? "display-block" : "display-none";
   return (
     <>
-      {props.replies.map((data, items) => {
+    {console.log("props.replies",props.replies)}
+      {props.replies.map((data) => {
         return (
           <ul>
-            <li className=" flex justify_between" key={items}>
+            <li className=" flex justify_between" key={data.id+"id"}>
               <div className="btn-group">
                 <button>+</button>
                 <p>{data.score}</p>

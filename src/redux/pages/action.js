@@ -1,5 +1,5 @@
 import data from "./data.json";
-import { ADD, DELETE } from "./type";
+import { ADDCOMMENT, DELETE,ADDReply } from "./type";
 // import data from "../../assets/images/avatars"
 export const deletAction = (id) => ({
   type: DELETE,
@@ -8,12 +8,12 @@ export const deletAction = (id) => ({
 export function uniqueId() {
   return Math.random() * 1000;
 }
-export const replyAction = (content, replyingTo, score, createdAt, id) => ({
-  type: ADD,
+export const addCommentAction = (content, score, createdAt, id) => ({
+  type: ADDCOMMENT,
   payload: {
     id: uniqueId(),
     content: content,
-    replyingTo,
+    
     score,
     createdAt,
     user: {
@@ -24,7 +24,25 @@ export const replyAction = (content, replyingTo, score, createdAt, id) => ({
   },
 });
 
-// "image": {
-//   "png": "./images/avatars/image-ramsesmiron.png",
-//   "webp": "./images/avatars/image-ramsesmiron.webp"
-// },
+export const addReplyAction = (currentReplayIdClicked,content, createdAt,  score,  replyingTo,username) => ({
+  type: ADDReply,
+  payload: {
+    id:currentReplayIdClicked,
+    newReply:
+
+     { id: uniqueId(),
+      content: content,
+      createdAt,
+      score,
+      replyingTo,
+      user: {
+        
+        image: {png:data.currentUser.image.png,
+        webp:data.currentUser.image.webp},
+        username: data.currentUser.username,
+      },}
+    
+  
+  },
+});
+

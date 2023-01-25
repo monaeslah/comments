@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Buttons from "./btnGroup";
 import Replies from "./commentsReplies";
 import ADDComment from "./addComment";
@@ -12,25 +11,26 @@ const Box = (props) => {
   const showHideClassName = props.inRep ? "display-block" : "display-none";
   useEffect(() => {
     setItems(props.data);
-  }, [props.data]);
+  }, [props]);
   useEffect(() => {
-    setUsername(props.data.currentUser.username);
+    setUsername(props.data?.currentUser.username);
   }, [props.data?.currentUser?.username]);
-
+  
   return (
     <>
       <ul className="display_page">
-        {items?.comments?.map((item) => {
+        {props.data?.comments?.map((comment) => {
           return (
             <>
-              <li className="flex" key={item}>
-                <Buttons item={item.score} />
+          
+              <li className="flex" key={comment.id + "number"}>
+                <Buttons score={comment.score} />
 
                 <div className=" widths">
                   <div className="flex justify_between">
-                    {item.user.username === usrname ? (
+                    {comment?.user.username === usrname ? (
                       <MainUser
-                        item={item}
+                        comments={comment}
                         openModal={props.openModal}
                         close={props.close}
                         modal={props.modal}
@@ -39,37 +39,39 @@ const Box = (props) => {
                       />
                     ) : (
                       <OtherUsers
-                        item={item}
-                        replyToComments={props.replyToComments}
+                        comments={comment}
+                        getUserId={props.getUserId}
+                        addReplyTo={props.addReplyTo}
                       />
                     )}
                   </div>
-                  <p>{item.content}</p>
+                  <p>{comment.content}</p>
                 </div>
               </li>
-              {item.user.username === usrname ? (
+              {comment.user.username === usrname ? (
                 <></> //can not reply to your comments
               ) : (
-                item.id === props.currentReplayIdClicked && (
+                comment.id === props.currentReplayIdClicked && (
                   <li className={`flex justify_between ${showHideClassName}`}>
                     <ADDComment
                       data={props.data}
                       inRep={props.inRep}
-                      repliedTo={item.user.username}
+                      replyingTo={comment.user.username}
                       addComment={props.addComment}
+                      ReplyToComment={props.ReplyToComment}
                       content={props.content}
                       setContent={props.setContent}
                     />
                   </li>
                 )
               )}
-              {item.replies.length === 0 ? (
+              {comment.replies.length === 0 ? (
                 ""
               ) : (
                 <>
                   <Replies
                     currentReplayIdClicked={props.currentReplayIdClicked}
-                    replies={item.replies}
+                    replies={comment.replies}
                     usrname={usrname}
                     replyCm={props.replyCm}
                     replyToComments={props.replyToComments}

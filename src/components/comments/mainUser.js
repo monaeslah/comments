@@ -1,17 +1,17 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React  from "react";
 import Modal from "./delet";
 const MainUser = (props) => {
     return (
         
         <>
         <div className="info flex">
-          <img src={props.item.user.image} alt="" />
-          <p>{props.item.user.username}</p>
+          <img src={props.comments.user.image} alt="" />
+          <p>{props.comments.user.username}</p>
           <p className="current_usr">you</p>
         </div>
         <div className="flex action_btn">
           <Modal
-            id={props.item.id}
+            id={props.comments.id}
             close={props.close}
             modal={props.modal}
             cancel={props.cancel}

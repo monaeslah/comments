@@ -1,18 +1,19 @@
-import React, { useState, useEffect, Fragment } from "react";
-import Modal from "./delet";
+import React from "react";
+
 const OtherUsers = (props) => {
+
   return (
     <>
-    
+ 
       <div className="info flex">
-        <img src={props.item.user.image.png} alt="" />
-        <p>{props.item.user.username}</p>
+        <img src={props.comments.user.image.png} alt="" />
+        <p>{props.comments.user.username}</p>
       </div>
       <div className="flex action_btn">
       
         <button
           onClick={() => {
-            props.replyToComments(props.item.user.username, props.item.id);
+            props.getUserId(props.comments.user.username, props.comments.id);
           }}
         >
           reply
