@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import Buttons from "./btnGroup";
-import Replies from "./commentsReplies";
+import CommentsReplies from "./commentsReplies";
 import ADDComment from "./addComment";
 
 import MainUser from "./mainUser";
@@ -15,20 +15,19 @@ const Box = (props) => {
   useEffect(() => {
     setUsername(props.data?.currentUser.username);
   }, [props.data?.currentUser?.username]);
-  
+
   return (
     <>
       <ul className="display_page">
         {props.data?.comments?.map((comment) => {
           return (
             <>
-          
               <li className="flex" key={comment.id + "number"}>
                 <Buttons score={comment.score} />
-
+                {console.log(comment.user)}
                 <div className=" widths">
                   <div className="flex justify_between">
-                    {comment?.user.username === usrname ? (
+                    {comment?.user?.username === usrname ? (
                       <MainUser
                         comments={comment}
                         openModal={props.openModal}
@@ -49,7 +48,7 @@ const Box = (props) => {
                 </div>
               </li>
               {comment.user.username === usrname ? (
-                <></> //can not reply to your comments
+                <></> //can not reply to your own comments
               ) : (
                 comment.id === props.currentReplayIdClicked && (
                   <li className={`flex justify_between ${showHideClassName}`}>
@@ -69,12 +68,12 @@ const Box = (props) => {
                 ""
               ) : (
                 <>
-                  <Replies
+                  <CommentsReplies
                     currentReplayIdClicked={props.currentReplayIdClicked}
                     replies={comment.replies}
                     usrname={usrname}
                     replyCm={props.replyCm}
-                    replyToComments={props.replyToComments}
+                    ReplyToReplies={props.ReplyToReplies}
                   />
                 </>
               )}

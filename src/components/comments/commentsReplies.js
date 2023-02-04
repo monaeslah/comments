@@ -7,11 +7,10 @@ const Replies = (props) => {
   const showHideClassName = props.inRep ? "display-block" : "display-none";
   return (
     <>
-    {console.log("props.replies",props.replies)}
       {props.replies.map((data) => {
         return (
           <ul>
-            <li className=" flex justify_between" key={data.id+"id"}>
+            <li className=" flex justify_between" key={data.id + "id"}>
               <div className="btn-group">
                 <button>+</button>
                 <p>{data.score}</p>
@@ -44,11 +43,10 @@ const Replies = (props) => {
                       <div className="info flex">
                         <img src={data.user.image.png} alt="" />
                         <p>{data.user.username}</p>
-                      
                       </div>
                       <button
                         onClick={() =>
-                          props.replyToComments(data.user.username, data.id)
+                          props.ReplyToReplies(data.user.username, data.id)
                         }
                       >
                         reply
@@ -57,7 +55,6 @@ const Replies = (props) => {
                   )}
                 </div>
                 <p>
-                  {" "}
                   <span>@{data.replyingTo}</span> {data.content}
                 </p>
               </div>
@@ -71,7 +68,6 @@ const Replies = (props) => {
                 >
                   <ADDComment data={props.data} />
                   {/* inRep={props.inRep} repliedTo={data.user.username} */}
-               
                 </li>
               )
             )}

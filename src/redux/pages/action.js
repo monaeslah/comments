@@ -1,5 +1,5 @@
 import data from "./data.json";
-import { ADDCOMMENT, DELETE,ADDReply } from "./type";
+import { ADDCOMMENT, DELETE,ADDReply ,ADDReplyToReply} from "./type";
 // import data from "../../assets/images/avatars"
 export const deletAction = (id) => ({
   type: DELETE,
@@ -46,3 +46,24 @@ export const addReplyAction = (currentReplayIdClicked,content, createdAt,  score
   },
 });
 
+export const addReplyToRepliesAction = (currentReplayIdClicked,content, createdAt,  score,  replyingTo,username) => ({
+  type: ADDReplyToReply,
+  payload: {
+    id:currentReplayIdClicked,
+    newReply:
+
+     { id: uniqueId(),
+      content: content,
+      createdAt,
+      score,
+      replyingTo,
+      user: {
+        
+        image: {png:data.currentUser.image.png,
+        webp:data.currentUser.image.webp},
+        username: data.currentUser.username,
+      },}
+    
+  
+  },
+});

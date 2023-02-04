@@ -1,4 +1,4 @@
-import { ADDCOMMENT, ADDReply, DELETE } from "./type";
+import { ADDCOMMENT, ADDReply, ADDReplyToReply, DELETE } from "./type";
 const data = require("./data.json");
 
 // comments: {
@@ -21,16 +21,9 @@ export const Comment = (state = data, action) => {
         ...state,
         comments: [...state.comments, action.payload],
       };
-    case DELETE:
-      console.log(action.id);
-      return {
-        ...state,
-        comments: state.comments.filter((item, index) => item.id !== action.id),
-        replies: state.comments.replies.filter(
-          (item, index) => item.id !== action.id
-        ),
-      };
+
     case ADDReply:
+      console.log("currentComment", action.payload);
       const comments = state.comments;
       const currentComment = comments.find(
         (item) => item.id === action.payload.id
@@ -46,7 +39,22 @@ export const Comment = (state = data, action) => {
           currentComment,
         ].sort((a, b) => (a.id > b.id ? 1 : -1)),
       };
+    case ADDReplyToReply:
+      console.log("currentComment", action.payload);
 
+      return {
+        ...state,
+        comments: [...state.comments, action.payload],
+      };
+    case DELETE:
+      console.log(action.id);
+      return {
+        ...state,
+        comments: state.comments.filter((item, index) => item.id !== action.id),
+        replies: state.comments.replies.filter(
+          (item, index) => item.id !== action.id
+        ),
+      };
     default:
       return state;
   }

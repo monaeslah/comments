@@ -4,6 +4,7 @@ import {
   deletAction,
   addCommentAction,
   addReplyAction,
+  addReplyToRepliesAction,
 } from "../../redux/pages/action";
 import Comment from "./comments";
 import ADDComment from "./addComment";
@@ -23,7 +24,8 @@ const Index = () => {
   const addComment = () => {
     dispatch(addCommentAction(content, score, createdAt));
   };
-  const ReplyToComment = () => {
+  const ReplyToComment = (username,id) => {
+    console.log("username",username,"id",id,replyingTo)
     dispatch(
       addReplyAction(
         currentReplayIdClicked,
@@ -33,6 +35,20 @@ const Index = () => {
         replyingTo
       )
     );
+    setInRep(false);
+  };
+  const ReplyToReplies = (username,id) => {
+    
+    dispatch(
+      addReplyToRepliesAction(
+        currentReplayIdClicked,
+        content,
+        createdAt,
+        score,
+        replyingTo
+      )
+    );
+    setInRep(false);
   };
   const delet = (id) => {
     dispatch(deletAction(id));
@@ -59,12 +75,14 @@ const Index = () => {
         openModal={openModal}
         cancel={cancel}
         inRep={inRep}
+        setInRep={setInRep}
         replyingTo={replyingTo}
         getUserId={getUserId}
         addComment={addComment}
         content={content}
         setContent={setContent}
         ReplyToComment={ReplyToComment}
+        ReplyToReplies={ReplyToReplies}
       />
       <ADDComment
         addComment={addComment}

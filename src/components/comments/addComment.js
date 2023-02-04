@@ -6,6 +6,7 @@ const Comment = (props) => {
     props.replyingTo ? "@" + props.replyingTo + " " : ""
   );
   const [typeidReplay, setTypeidReplay] = useState(replyTo);
+  const [mentioned, setMentioned] = useState("");
 
   useEffect(() => {
     setComment(props.data);
@@ -21,18 +22,20 @@ const Comment = (props) => {
 
   const send = () => {
     if (props.replyingTo === undefined) {
-      console.log("new comment",);
+      console.log("new comment", props.inRep);
       props.setContent(typeidReplay);
       props.addComment(typeidReplay);
     } else {
-      console.log("new Replay");
       props.setContent(typeidReplay);
       props.ReplyToComment(typeidReplay);
+      
+      console.log("new Replay", props.inRep);
     }
   };
 
   return (
     <>
+     
       <div className="flex comment_sec">
         <img
           className="prf_img"
