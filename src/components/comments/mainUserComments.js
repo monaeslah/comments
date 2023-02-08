@@ -1,5 +1,5 @@
 import React  from "react";
-import Modal from "./delet";
+import Modal from "../MainUser/delet";
 const MainUser = (props) => {
     return (
         

@@ -67,3 +67,11 @@ export const addReplyToRepliesAction = (currentReplayIdClicked,content, createdA
   
   },
 });
+export const saveWriterDetailAction =payload=>{
+  dispatchEvent(
+    {
+      type: 'ID',
+      payload
+    }
+  )
+}

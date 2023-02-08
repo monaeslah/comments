@@ -1,9 +1,9 @@
 import React, { useState, useEffect, Fragment } from "react";
-import Buttons from "./btnGroup";
-import CommentsReplies from "./commentsReplies";
+import Buttons from "../btnGroup";
+import CommentsReplies from "../replies/commentsReplies";
 import ADDComment from "./addComment";
 
-import MainUser from "./mainUser";
+import MainUser from "./mainUserComments";
 import OtherUsers from "./OtherUsers";
 const Box = (props) => {
   const [items, setItems] = useState(props.data);
@@ -24,7 +24,6 @@ const Box = (props) => {
             <>
               <li className="flex" key={comment.id + "number"}>
                 <Buttons score={comment.score} />
-                {console.log(comment.user)}
                 <div className=" widths">
                   <div className="flex justify_between">
                     {comment?.user?.username === usrname ? (
@@ -40,7 +39,7 @@ const Box = (props) => {
                       <OtherUsers
                         comments={comment}
                         getUserId={props.getUserId}
-                        addReplyTo={props.addReplyTo}
+                     
                       />
                     )}
                   </div>
@@ -72,8 +71,9 @@ const Box = (props) => {
                     currentReplayIdClicked={props.currentReplayIdClicked}
                     replies={comment.replies}
                     usrname={usrname}
-                    replyCm={props.replyCm}
                     ReplyToReplies={props.ReplyToReplies}
+                    comment={comment}
+                    getUserId={props.getUserId}
                   />
                 </>
               )}

@@ -5,9 +5,10 @@ import {
   addCommentAction,
   addReplyAction,
   addReplyToRepliesAction,
-} from "../../redux/pages/action";
-import Comment from "./comments";
-import ADDComment from "./addComment";
+  saveWriterDetailAction
+} from "../redux/pages/action";
+import Comment from "./comments/comments";
+import ADDComment from "./comments/addComment";
 const Index = () => {
   const data = useSelector((store) => store.Comment);
 
@@ -37,6 +38,7 @@ const Index = () => {
     );
     setInRep(false);
   };
+
   const ReplyToReplies = (username,id) => {
     
     dispatch(
@@ -58,10 +60,18 @@ const Index = () => {
     setModal(true);
   };
   const getUserId = (username, id) => {
+    console.log(username,id)
     setInRep(true);
     setCurrentReplayIdClicked(id);
     setReplyingTo(username);
   };
+  const detailTaker=(username, id)=>{
+    console.log(id)
+    setInRep(true);
+    setCurrentReplayIdClicked(id);
+    setReplyingTo(username);
+    // dispatch(saveWriterDetailAction(currentReplayIdClicked,replyingTo))
+  }
   const cancel = () => {
     setModal(false);
   };
@@ -83,6 +93,7 @@ const Index = () => {
         setContent={setContent}
         ReplyToComment={ReplyToComment}
         ReplyToReplies={ReplyToReplies}
+        detailTaker={detailTaker}
       />
       <ADDComment
         addComment={addComment}
