@@ -5,7 +5,7 @@ import {
   addCommentAction,
   addReplyAction,
   addReplyToRepliesAction,
-  saveWriterDetailAction
+  saveWriterDetailAction,
 } from "../redux/pages/action";
 import Comment from "./comments/comments";
 import ADDComment from "./comments/addComment";
@@ -25,8 +25,7 @@ const Index = () => {
   const addComment = () => {
     dispatch(addCommentAction(content, score, createdAt));
   };
-  const ReplyToComment = (username,id) => {
-    console.log("username",username,"id",id,replyingTo)
+  const ReplyToComment = (username, id) => {
     dispatch(
       addReplyAction(
         currentReplayIdClicked,
@@ -39,8 +38,12 @@ const Index = () => {
     setInRep(false);
   };
 
-  const ReplyToReplies = (username,id) => {
-    
+  const ReplyToReplies = (username, id) => {
+    console.log("data sent is ",  currentReplayIdClicked,
+    content,
+    createdAt,
+    score,
+    replyingTo)
     dispatch(
       addReplyToRepliesAction(
         currentReplayIdClicked,
@@ -52,28 +55,22 @@ const Index = () => {
     );
     setInRep(false);
   };
+
+  const getUserId = (username, id) => {
+    setInRep(true);
+    setCurrentReplayIdClicked(id);
+    setReplyingTo(username);
+  };
+
+  const cancel = () => {
+    setModal(false);
+  };
   const delet = (id) => {
     dispatch(deletAction(id));
     setModal(false);
   };
   const openModal = () => {
     setModal(true);
-  };
-  const getUserId = (username, id) => {
-    console.log(username,id)
-    setInRep(true);
-    setCurrentReplayIdClicked(id);
-    setReplyingTo(username);
-  };
-  const detailTaker=(username, id)=>{
-    console.log(id)
-    setInRep(true);
-    setCurrentReplayIdClicked(id);
-    setReplyingTo(username);
-    // dispatch(saveWriterDetailAction(currentReplayIdClicked,replyingTo))
-  }
-  const cancel = () => {
-    setModal(false);
   };
   return (
     <div className="app-bg">
@@ -92,14 +89,16 @@ const Index = () => {
         content={content}
         setContent={setContent}
         ReplyToComment={ReplyToComment}
+        score={score}
+        setScore={setScore}
         ReplyToReplies={ReplyToReplies}
-        detailTaker={detailTaker}
       />
       <ADDComment
         addComment={addComment}
         data={data}
         content={content}
         setContent={setContent}
+        
       />
     </div>
   );

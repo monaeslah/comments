@@ -4,7 +4,7 @@ const MainUserReplies = (props) => {
     return (
         
         <>
-        {console.log("props",props.username)}
+      
         <div className="info flex">
           <img src={props.username.user.image.png} alt="" />
           <p>{props.username.user.username}</p>

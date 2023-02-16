@@ -8,7 +8,7 @@ const Replies = (props) => {
  
   return (
     <>
-     {/* {console.log("replies",props.replies)} */}
+   
       {props?.replies.map((data) => {
         return (
           <ul>
@@ -53,7 +53,12 @@ const Replies = (props) => {
                 <li
                   className={`flex justify_space_between ${showHideClassName}`}
                 >
-                  <ADDComment data={props.data} />
+                  <ADDComment username={data}  data={props.data}
+                  replyingTo={data.replyingTo}
+                  ReplyToReplies={props.ReplyToReplies}
+                   content={props.content}
+                   setContent={props.setContent}
+                   addComment={props.addComment}/>
                   {/* inRep={props.inRep} repliedTo={data.user.username} */}
                 </li>
               )

@@ -13,8 +13,7 @@ const OtherUsersReply = (props) => {
       
         <button
           onClick={() => {
-            console.log("replies",props.username)
-            props.getUserId(props.username.user.username, props.id);
+            props.getUserId(props.username.user.username, props.username.id);
           }}
         >
           reply

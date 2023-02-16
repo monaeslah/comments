@@ -2,16 +2,18 @@ import React, { useState, useEffect, useCallback } from "react";
 
 const Comment = (props) => {
   const [comment, setComment] = useState(props.data);
+  const [commentsRepies, setCommentsRepies] = useState(props.username);
   const [replyTo, setReplyTo] = useState(
     props.replyingTo ? "@" + props.replyingTo + " " : ""
   );
   const [typeidReplay, setTypeidReplay] = useState(replyTo);
-  const [mentioned, setMentioned] = useState("");
 
   useEffect(() => {
     setComment(props.data);
   }, [props.data]);
-
+  useEffect(() => {
+    setCommentsRepies(props.username);
+  }, [props.username]);
   const replayToCommentsOnChange = useCallback((event) => {
     props.setContent(event.target.value);
 
@@ -19,23 +21,24 @@ const Comment = (props) => {
   });
 
   // ()=>
-
+console.log("content",props)
   const send = () => {
     if (props.replyingTo === undefined) {
-      console.log("new comment", props.inRep);
       props.setContent(typeidReplay);
       props.addComment(typeidReplay);
-    } else {
+    } else if (props.username?.replyingTo !== " "){
+      props.setContent(typeidReplay);
+      props.ReplyToReplies(typeidReplay);
+    }
+    else {
       props.setContent(typeidReplay);
       props.ReplyToComment(typeidReplay);
-      
-      console.log("new Replay", props.inRep);
     }
   };
 
   return (
     <>
-     
+      {/* {console.log("newprops", commentsRepies, comment)} */}
       <div className="flex comment_sec">
         <img
           className="prf_img"

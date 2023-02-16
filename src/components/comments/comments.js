@@ -39,7 +39,6 @@ const Box = (props) => {
                       <OtherUsers
                         comments={comment}
                         getUserId={props.getUserId}
-                     
                       />
                     )}
                   </div>
@@ -68,12 +67,19 @@ const Box = (props) => {
               ) : (
                 <>
                   <CommentsReplies
+                   data={props.data}
                     currentReplayIdClicked={props.currentReplayIdClicked}
                     replies={comment.replies}
                     usrname={usrname}
                     ReplyToReplies={props.ReplyToReplies}
                     comment={comment}
                     getUserId={props.getUserId}
+                    inRep={props.inRep}
+                    setInRep={props.setInRep}
+                    ReplyToComment={props.ReplyToComment}
+                    content={props.content}
+                    setContent={props.setContent}
+                    addComment={props.addComment}
                   />
                 </>
               )}
