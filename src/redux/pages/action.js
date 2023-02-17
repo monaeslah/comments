@@ -47,7 +47,7 @@ export const addReplyAction = (currentReplayIdClicked,content, createdAt,  score
 });
 
 export const addReplyToRepliesAction = (currentReplayIdClicked,content, createdAt,  score,  replyingTo,username) => ({
-  type: ADDReplyToReply,
+  type: ADDReply,
   payload: {
     id:currentReplayIdClicked,
     newReply:

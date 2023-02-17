@@ -23,7 +23,7 @@ export const Comment = (state = data, action) => {
       };
 
     case ADDReply:
-      
+      console.log("currentComment", action.payload);
       const comments = state.comments;
       const currentComment = comments.find(
         (item) => item.id === action.payload.id
@@ -39,15 +39,7 @@ export const Comment = (state = data, action) => {
           currentComment,
         ].sort((a, b) => (a.id > b.id ? 1 : -1)),
       };
-    case ADDReplyToReply:
-      console.log("currentComment", action.payload);
-      return {
-        ...state,
-        comments: [
-          ...comments.filter((item) => item.id !== action.payload.id),
-          currentComment,
-        ].sort((a, b) => (a.id > b.id ? 1 : -1)),
-      };
+   
     case DELETE:
       console.log(action.id,state.comments.replies);
       return {

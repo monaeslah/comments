@@ -3,9 +3,15 @@ import React, { useState, useEffect, useCallback } from "react";
 const Comment = (props) => {
   const [comment, setComment] = useState(props.data);
   const [commentsRepies, setCommentsRepies] = useState(props.username);
-  const [replyTo, setReplyTo] = useState(
-    props.replyingTo ? "@" + props.replyingTo + " " : ""
-  );
+  const [replyTo, setReplyTo] = useState(() => {
+    if (typeof props.replyingTo === "string") {
+      return "@" + props.replyingTo + " ";
+    } else if (props.replyingTo === true) {
+      return "@" + props.username.user.username + " ";
+    } else {
+      return "";
+    }
+  });
   const [typeidReplay, setTypeidReplay] = useState(replyTo);
 
   useEffect(() => {
@@ -21,16 +27,16 @@ const Comment = (props) => {
   });
 
   // ()=>
-console.log("content",props)
+  console.log("content", props);
   const send = () => {
     if (props.replyingTo === undefined) {
       props.setContent(typeidReplay);
       props.addComment(typeidReplay);
-    } else if (props.username?.replyingTo !== " "){
+    } else if (props.username?.replyingTo !== " ") {
+      
       props.setContent(typeidReplay);
-      props.ReplyToReplies(typeidReplay);
-    }
-    else {
+      props.ReplyToReplies(typeidReplay, props.listedReply);
+    } else {
       props.setContent(typeidReplay);
       props.ReplyToComment(typeidReplay);
     }

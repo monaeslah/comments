@@ -67,7 +67,7 @@ const Box = (props) => {
               ) : (
                 <>
                   <CommentsReplies
-                   data={props.data}
+                    data={props.data}
                     currentReplayIdClicked={props.currentReplayIdClicked}
                     replies={comment.replies}
                     usrname={usrname}
@@ -80,6 +80,8 @@ const Box = (props) => {
                     content={props.content}
                     setContent={props.setContent}
                     addComment={props.addComment}
+                    parentUser={props.parentUser}
+                    setParentUser={props.parentUser}
                   />
                 </>
               )}

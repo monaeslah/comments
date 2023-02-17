@@ -21,7 +21,7 @@ const Index = () => {
   const [createdAt, setCreatedAt] = useState(new Date());
   const [score, setScore] = useState(0);
   const [replyingTo, setReplyingTo] = useState("");
-
+  const [parentUser,setParentUser]=useState("")
   const addComment = () => {
     dispatch(addCommentAction(content, score, createdAt));
   };
@@ -38,8 +38,8 @@ const Index = () => {
     setInRep(false);
   };
 
-  const ReplyToReplies = (username, id) => {
-    console.log("data sent is ",  currentReplayIdClicked,
+  const ReplyToReplies = (username, id,parentUser) => {
+    console.log("data sent is ", username, currentReplayIdClicked,
     content,
     createdAt,
     score,
@@ -92,6 +92,8 @@ const Index = () => {
         score={score}
         setScore={setScore}
         ReplyToReplies={ReplyToReplies}
+        parentUser={parentUser}
+        setParentUser={parentUser}
       />
       <ADDComment
         addComment={addComment}
