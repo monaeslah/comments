@@ -44,13 +44,13 @@ export const deletAction = (id) => ({
 export function uniqueId() {
   return Math.random() * 1000;
 }
-export const addCommentAction = (content, score, createdAt, id) => ({
+export const addCommentAction = (content, createdAt, id) => ({
   type: ADDCOMMENT,
   payload: {
     id: uniqueId(),
     content: content,
 
-    score,
+    
     createdAt,
     user: {
       username: data.currentUser.username,

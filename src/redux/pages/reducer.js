@@ -8,7 +8,20 @@ import {
   DOWNVOTE_REPLY
 } from "./type";
 const data = require("./data.json");
-
+const initialState = {
+  comments: data.comments.map((comment) => {
+    return {
+      ...comment,
+      score: 0,
+      replies: comment.replies.map((reply) => {
+        return {
+          ...reply,
+          score: 0,
+        };
+      }),
+    };
+  }),
+};
 
 const keys = Object.keys(data);
 export const Comment = (state = data, action) => {
@@ -16,7 +29,17 @@ export const Comment = (state = data, action) => {
     case ADDCOMMENT:
       return {
         ...state,
-        comments: [...state.comments, action.payload],
+        comments: [...state.comments, 
+        
+          {
+            id: action.payload.id,
+            user: action.payload.user.username,
+            content: action.content,
+            score: 0, // set initial score to 0
+            replies: [],
+            createdAt:new Date()
+          },
+        ],
       };
 
     case ADDReply:

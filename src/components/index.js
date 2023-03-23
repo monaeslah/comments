@@ -18,21 +18,17 @@ const Index = () => {
   const [currentReplayIdClicked, setCurrentReplayIdClicked] = useState(-1);
 
   const [content, setContent] = useState("");
-  const [createdAt, setCreatedAt] = useState(new Date());
-  const [score, setScore] = useState(0);
   const [replies, setReplies] = useState({});
   const [replyingTo, setReplyingTo] = useState("");
   const [parentUser,setParentUser]=useState("")
   const addComment = () => {
-    dispatch(addCommentAction(content, score, createdAt));
+    dispatch(addCommentAction(content));
   };
   const ReplyToComment = (username, id) => {
     dispatch(
       addReplyAction(
         currentReplayIdClicked,
         content,
-        createdAt,
-        score,
         replyingTo
       )
     );
@@ -42,15 +38,11 @@ const Index = () => {
   const ReplyToReplies = (username, id,parentUser) => {
     console.log("data sent is ", username, currentReplayIdClicked,
     content,
-    createdAt,
-    score,
     replyingTo)
     dispatch(
       addReplyToRepliesAction(
         currentReplayIdClicked,
         content,
-        createdAt,
-        score,
         replyingTo
       )
     );
@@ -90,8 +82,6 @@ const Index = () => {
         content={content}
         setContent={setContent}
         ReplyToComment={ReplyToComment}
-        score={score}
-        setScore={setScore}
         ReplyToReplies={ReplyToReplies}
         parentUser={parentUser}
         setParentUser={parentUser}
