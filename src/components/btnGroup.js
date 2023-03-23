@@ -1,21 +1,34 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { upvoteReply, downvoteReply, likereplyAction } from "../redux/pages/action";
+import {
+  upvoteComment,
+  downvoteComment,
+} from "../redux/pages/action";
+
+
 const Buttons = (props) => {
-  const handleDislikeClick = (commentId) => {
-    console.log(commentId)
-    downvoteReply(commentId);
+  const dispatch = useDispatch();
+  const handleLikeClick = (commentId,score) => {
+    dispatch(upvoteComment(commentId,score));
+    console.log(commentId);
+  };
+  const handleDislikeClick = (commentId,score) => {
+    dispatch(downvoteComment(commentId,score));
   };
 
-  const handleLikeClick = (commentId) => {
-    upvoteReply(commentId);
-  };
-  const dispatch = useDispatch();
   return (
     <div className="btn-group">
-      <button onClick={() => handleLikeClick(props.id, props.prevscore)}>+</button>
+      <button
+        onClick={() => handleLikeClick(props.comment.id, props.prevscore)}
+      >
+        +
+      </button>
       <p>{props.prevscore}</p>
-      <button onClick={() => handleDislikeClick(props.id, props.prevscore)}>-</button>
+      <button
+        onClick={() => handleDislikeClick(props.comment.id, props.prevscore)}
+      >
+        -
+      </button>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import {
   ADDCOMMENT,
   ADDReply,
   DELETE,
-  UPVOTE_COMMENT,
+  UPVOTECOMMENT,
   UPVOTE_REPLY,
   DOWNVOTE_COMMENT,
   DOWNVOTE_REPLY
@@ -41,24 +41,34 @@ export const Comment = (state = data, action) => {
         ...state,
         comments: state.comments.filter((item, index) => item.id !== action.id),
       };
-    case UPVOTE_COMMENT:
+    case UPVOTECOMMENT:
+     
       return {
         ...state,
-        comments: state.comments.map((comment, index) => 
-        comment?.id === action.id
-            ? { ...comment, score: comment.score + 1 }
-            : comment
-            )
+        comments: state.comments.map((comment) => {
+          if (comment.id === action.payload.commentId) {
+            return {
+              ...comment,
+              score: comment.score + 1
+            };
+          }
+          return comment;
+        })
       };
-    case DOWNVOTE_COMMENT:
+    case DOWNVOTE_COMMENT: 
+    console.log("UPVOTE_COMMENT",action)
       return {
-        ...state,
-        comments: state.comments.map((comment) =>
-          comment.id === action.id
-            ? { ...comment, score: comment.score - 1 }
-            : comment
-        ),
-      };
+      ...state,
+      comments: state.comments.map((comment) => {
+        if (comment.id === action.payload.commentId) {
+          return {
+            ...comment,
+            score: comment.score - 1
+          };
+        }
+        return comment;
+      })
+    };
       case UPVOTE_REPLY:
         console.log("action id is", action);
         const replies = state.comments.replies;

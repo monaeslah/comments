@@ -2,7 +2,6 @@ import React, { useState, useEffect, Fragment } from "react";
 import Buttons from "../btnGroup";
 import CommentsReplies from "../replies/commentsReplies";
 import ADDComment from "./addComment";
-
 import MainUser from "./mainUserComments";
 import OtherUsers from "./OtherUsers";
 const Box = (props) => {

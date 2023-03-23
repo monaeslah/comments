@@ -3,31 +3,31 @@ import {
   ADDCOMMENT,
   DELETE,
   ADDReply,
-  UPVOTE_COMMENT,
+  UPVOTECOMMENT,
   UPVOTE_REPLY,
   DOWNVOTE_COMMENT,
   DOWNVOTE_REPLY
 } from "./type";
 // import data from "../../assets/images/avatars"
 
-export const upvoteComment = (id) => {
+export const upvoteComment = (commentId,score) => {
   return {
-    type: UPVOTE_COMMENT,
-    payload: id,
+    type: UPVOTECOMMENT,
+    payload: {commentId,score},
   };
 };
 
-export const upvoteReply = (id) => {
+export const upvoteReply = (commentId,score) => {
   return {
     type: UPVOTE_REPLY,
-    payload: id,
+    payload: {commentId,score},
   };
 };
 
-export const downvoteComment = (id) => {
+export const downvoteComment = ( commentId,score) => {
   return {
     type: DOWNVOTE_COMMENT,
-    payload: id,
+    payload:  {commentId,score},
   };
 };
 
