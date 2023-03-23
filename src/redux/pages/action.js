@@ -3,30 +3,40 @@ import {
   ADDCOMMENT,
   DELETE,
   ADDReply,
-  inCreaseLike,
-  deCreaseLike,
-  deCreaseRepLike,
-  inCreaseRepLike
+  UPVOTE_COMMENT,
+  UPVOTE_REPLY,
+  DOWNVOTE_COMMENT,
+  DOWNVOTE_REPLY
 } from "./type";
 // import data from "../../assets/images/avatars"
-export const likeAction = (id) => ({
-  type: inCreaseLike,
-  id: id
-});
-export const dislikeAction = (id) => ({
-  type: deCreaseLike,
-  
-    id: id
-});
-export const likereplyAction = (id) => ({
-  type: inCreaseRepLike,
-  id: id
-});
-export const dislikereplyAction = (id) => ({
-  type: deCreaseRepLike,
-  
-    id: id
-});
+
+export const upvoteComment = (id) => {
+  return {
+    type: UPVOTE_COMMENT,
+    payload: id,
+  };
+};
+
+export const upvoteReply = (id) => {
+  return {
+    type: UPVOTE_REPLY,
+    payload: id,
+  };
+};
+
+export const downvoteComment = (id) => {
+  return {
+    type: DOWNVOTE_COMMENT,
+    payload: id,
+  };
+};
+
+export const downvoteReply = (id) => {
+  return {
+    type: DOWNVOTE_REPLY,
+    payload: id,
+  };
+};
 export const deletAction = (id) => ({
   type: DELETE,
   id

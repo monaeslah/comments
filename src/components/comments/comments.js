@@ -26,7 +26,7 @@ const Box = (props) => {
                 <Buttons
                   prevscore={comment.score}
                   comment={comment}
-                  setComment={props.setComment}
+                  setReplies={props.setReplies}
                   setScore={props.setScore}
                 />
                 <div className=" widths">
