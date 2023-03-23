@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { dislikeAction, likeAction, likereplyAction } from "../redux/pages/action";
+import { upvoteReply, downvoteReply, likereplyAction } from "../redux/pages/action";
 const Buttons = (props) => {
-  const handleLikeClick = (commentId) => {
+  const handleDislikeClick = (commentId) => {
     console.log(commentId)
-    likeAction(commentId);
+    downvoteReply(commentId);
   };
 
-  const handleDislikeClick = (commentId) => {
-    dislikeAction(commentId);
+  const handleLikeClick = (commentId) => {
+    upvoteReply(commentId);
   };
   const dispatch = useDispatch();
   return (

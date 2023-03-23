@@ -1,11 +1,11 @@
 import {
   ADDCOMMENT,
   ADDReply,
-  ADDReplyToReply,
   DELETE,
-  inCreaseLike,
-  deCreaseLike,
-  inCreaseRepLike
+  UPVOTE_COMMENT,
+  UPVOTE_REPLY,
+  DOWNVOTE_COMMENT,
+  DOWNVOTE_REPLY
 } from "./type";
 const data = require("./data.json");
 
@@ -41,7 +41,7 @@ export const Comment = (state = data, action) => {
         ...state,
         comments: state.comments.filter((item, index) => item.id !== action.id),
       };
-    case inCreaseLike:
+    case UPVOTE_COMMENT:
       return {
         ...state,
         comments: state.comments.map((comment, index) => 
@@ -50,7 +50,7 @@ export const Comment = (state = data, action) => {
             : comment
             )
       };
-    case deCreaseLike:
+    case DOWNVOTE_COMMENT:
       return {
         ...state,
         comments: state.comments.map((comment) =>
@@ -59,7 +59,7 @@ export const Comment = (state = data, action) => {
             : comment
         ),
       };
-      case inCreaseRepLike:
+      case UPVOTE_REPLY:
         console.log("action id is", action);
         const replies = state.comments.replies;
         return {
