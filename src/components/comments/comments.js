@@ -25,8 +25,8 @@ const Box = (props) => {
               <li className="flex" key={comment.id + "number"}>
                 <Buttons
                   prevscore={comment.score}
-                  id={comment.id}
-                  score={props.score}
+                  comment={comment}
+                  setComment={props.setComment}
                   setScore={props.setScore}
                 />
                 <div className=" widths">

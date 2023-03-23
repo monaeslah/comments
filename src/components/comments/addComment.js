@@ -31,10 +31,17 @@ const Comment = (props) => {
   const send = () => {
     if (props.hasOwnProperty("replyingTo")) {
       console.log("string")
+       const init=()=> {
+        this.child.parent = this;
+        delete this.init;
+        return this;
+    }
+console.log("init",init)
+
       props.setContent(typeidReplay);
       props.ReplyToComment(typeidReplay);
     }
-    if (props.replyingTo === undefined) {
+    else {
       props.setContent(typeidReplay);
       props.addComment(typeidReplay);
     } 

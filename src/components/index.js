@@ -20,6 +20,7 @@ const Index = () => {
   const [content, setContent] = useState("");
   const [createdAt, setCreatedAt] = useState(new Date());
   const [score, setScore] = useState(0);
+  const [comment, setComment] = useState({});
   const [replyingTo, setReplyingTo] = useState("");
   const [parentUser,setParentUser]=useState("")
   const addComment = () => {
@@ -94,6 +95,8 @@ const Index = () => {
         ReplyToReplies={ReplyToReplies}
         parentUser={parentUser}
         setParentUser={parentUser}
+        comment={comment}
+        setComment={setComment}
       />
       <ADDComment
         addComment={addComment}
