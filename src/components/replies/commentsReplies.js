@@ -1,4 +1,5 @@
 import React from "react";
+import Buttons from "../btnGroup";
 
 import ADDComment from "../comments/addComment";
 import MainUserReplies from "./mainUserReplies";
@@ -12,11 +13,9 @@ const Replies = (props) => {
         return (
           <ul>
             <li className=" flex justify_between" key={data.id + "id"}>
-              <div className="btn-group">
-                <button>+</button>
-                <p>{data.score}</p>
-                <button>-</button>
-              </div>
+            <Buttons prevscore={data.score} id={data.id} audience={data.replyingTo}
+            
+            />
 
               <div className="replies widths">
                 <div className="flex justify_between">
@@ -51,6 +50,7 @@ const Replies = (props) => {
                 <li
                   className={`flex justify_space_between ${showHideClassName}`}
                 >
+                  {console.log("currentReplayIdClicked",props.currentReplayIdClicked)}
                   <ADDComment
                     username={data}
                     data={props.data}
@@ -62,6 +62,7 @@ const Replies = (props) => {
                     addComment={props.addComment}
                     parentUser={props.parentUser}
                     setParentUser={props.parentUser}
+                    ReplyToComment={props.currentReplayIdClicked}
                   />
                   {/* inRep={props.inRep} repliedTo={data.user.username} */}
                 </li>

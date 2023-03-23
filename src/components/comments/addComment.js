@@ -27,19 +27,17 @@ const Comment = (props) => {
   });
 
   // ()=>
-  console.log("content", props);
+  
   const send = () => {
-    if (props.replyingTo === undefined) {
-      props.setContent(typeidReplay);
-      props.addComment(typeidReplay);
-    } else if (props.username?.replyingTo !== " ") {
-      
-      props.setContent(typeidReplay);
-      props.ReplyToReplies(typeidReplay, props.listedReply);
-    } else {
+    if (props.hasOwnProperty("replyingTo")) {
+      console.log("string")
       props.setContent(typeidReplay);
       props.ReplyToComment(typeidReplay);
     }
+    if (props.replyingTo === undefined) {
+      props.setContent(typeidReplay);
+      props.addComment(typeidReplay);
+    } 
   };
 
   return (

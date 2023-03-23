@@ -1,20 +1,17 @@
-import { ADDCOMMENT, ADDReply, ADDReplyToReply, DELETE } from "./type";
+import {
+  ADDCOMMENT,
+  ADDReply,
+  ADDReplyToReply,
+  DELETE,
+  inCreaseLike,
+  deCreaseLike,
+  inCreaseRepLike
+} from "./type";
 const data = require("./data.json");
 
-// comments: {
-//     count: action.count,
-//     products: [
-//       ...state.catalogItems['products'],
-//       action.catalogItems  ?
-//         action.catalogItems['products']
-//         :
-//         {}
-//     ]
-//   }
 
 const keys = Object.keys(data);
 export const Comment = (state = data, action) => {
-  console.log("state", state);
   switch (action.type) {
     case ADDCOMMENT:
       return {
@@ -23,7 +20,6 @@ export const Comment = (state = data, action) => {
       };
 
     case ADDReply:
-      console.log("currentComment", action.payload);
       const comments = state.comments;
       const currentComment = comments.find(
         (item) => item.id === action.payload.id
@@ -39,16 +35,38 @@ export const Comment = (state = data, action) => {
           currentComment,
         ].sort((a, b) => (a.id > b.id ? 1 : -1)),
       };
-   
+
     case DELETE:
-      console.log(action.id,state.comments.replies);
       return {
         ...state,
         comments: state.comments.filter((item, index) => item.id !== action.id),
-        // replies: state.comments.replies.filter(
-        //   (item, index) => item.id !== action.id
-        // ),
       };
+    case inCreaseLike:
+      return {
+        ...state,
+        comments: state.comments.map((comment, index) => 
+        comment?.id === action.id
+            ? { ...comment, score: comment.score + 1 }
+            : comment
+            )
+      };
+    case deCreaseLike:
+      return {
+        ...state,
+        comments: state.comments.map((comment) =>
+          comment.id === action.id
+            ? { ...comment, score: comment.score - 1 }
+            : comment
+        ),
+      };
+      case inCreaseRepLike:
+        console.log("action id is", action);
+        const replies = state.comments.replies;
+        return {
+          ...state,
+          comments: replies.score + 1
+        };
+       
     default:
       return state;
   }

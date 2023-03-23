@@ -23,7 +23,12 @@ const Box = (props) => {
           return (
             <>
               <li className="flex" key={comment.id + "number"}>
-                <Buttons score={comment.score} />
+                <Buttons
+                  prevscore={comment.score}
+                  id={comment.id}
+                  score={props.score}
+                  setScore={props.setScore}
+                />
                 <div className=" widths">
                   <div className="flex justify_between">
                     {comment?.user?.username === usrname ? (
@@ -69,10 +74,10 @@ const Box = (props) => {
                   <CommentsReplies
                     data={props.data}
                     currentReplayIdClicked={props.currentReplayIdClicked}
+                    comment={comment}
                     replies={comment.replies}
                     usrname={usrname}
                     ReplyToReplies={props.ReplyToReplies}
-                    comment={comment}
                     getUserId={props.getUserId}
                     inRep={props.inRep}
                     setInRep={props.setInRep}
@@ -82,6 +87,8 @@ const Box = (props) => {
                     addComment={props.addComment}
                     parentUser={props.parentUser}
                     setParentUser={props.parentUser}
+                    score={props.score}
+                    setScore={props.setScore}
                   />
                 </>
               )}
