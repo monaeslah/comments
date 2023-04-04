@@ -20,28 +20,31 @@ const Index = () => {
   const [content, setContent] = useState("");
   const [replies, setReplies] = useState({});
   const [replyingTo, setReplyingTo] = useState("");
-  const [parentUser,setParentUser]=useState("")
+  const [parentUser, setParentUser] = useState("");
   const addComment = () => {
     dispatch(addCommentAction(content));
   };
   const ReplyToComment = (username, id) => {
-    dispatch(
-      addReplyAction(
-        currentReplayIdClicked,
-        content,
-        replyingTo
-      )
-    );
+    console.log(replyingTo);
+    dispatch(addReplyAction(currentReplayIdClicked, content, replyingTo));
     setInRep(false);
   };
 
-  const ReplyToReplies = (username, id,parentUser) => {
-    console.log("data sent is ", username, currentReplayIdClicked,
-    content,
-    replyingTo)
+  const ReplyToReplies = (username, listedReply) => {
+    console.log(
+      "currentReplayIdClicked ",
+      currentReplayIdClicked,
+      "listedReply",
+      listedReply,
+      "content",
+      content,
+      "replyingTo",
+      replyingTo
+    );
     dispatch(
       addReplyToRepliesAction(
         currentReplayIdClicked,
+        listedReply,
         content,
         replyingTo
       )
@@ -64,7 +67,7 @@ const Index = () => {
   };
   const openModal = () => {
     setModal(true);
-    alert()
+    alert();
   };
   return (
     <div className="app-bg">
@@ -86,7 +89,6 @@ const Index = () => {
         ReplyToReplies={ReplyToReplies}
         parentUser={parentUser}
         setParentUser={parentUser}
-      
         replies={replies}
         setReplies={setReplies}
       />
@@ -95,7 +97,6 @@ const Index = () => {
         data={data}
         content={content}
         setContent={setContent}
-        
       />
     </div>
   );

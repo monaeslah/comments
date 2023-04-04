@@ -61,7 +61,6 @@ const Replies = (props) => {
                     setContent={props.setContent}
                     addComment={props.addComment}
                     setParentUser={props.parentUser}
-                    
                     ReplyToComment={props.ReplyToReplies}
                     // ReplyToComment={props.currentReplayIdClicked}
                   />

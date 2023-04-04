@@ -89,21 +89,21 @@ export const addReplyAction = (
 
 export const addReplyToRepliesAction = (
   currentReplayIdClicked,
+  listedReply,
   content,
-  createdAt,
-  score,
   replyingTo,
-  username
 ) => ({
   type: ADDReply,
   payload: {
-    id: currentReplayIdClicked,
     newReply: {
       id: uniqueId(),
-      content: content,
-      createdAt,
-      score,
+      score: 0, // set initial score to 0
+      createdAt: new Date(),
+      currentReplayIdClicked,
+      content,
+      listedReply,
       replyingTo,
+    
       user: {
         image: {
           png: data.currentUser.image.png,

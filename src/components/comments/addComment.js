@@ -30,8 +30,10 @@ const Comment = (props) => {
 
   const send = () => {
     if (props.hasOwnProperty("replyingTo")) {
+      console.log("string",props.listedReply,props.replyingTo);
+      
       props.setContent(typeidReplay);
-      props.ReplyToComment(typeidReplay,);
+      props.ReplyToComment(typeidReplay,props.listedReply);
     } else {
       console.log("not a string");
 

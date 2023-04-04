@@ -33,11 +33,13 @@ export const Comment = (state = data, action) => {
       };
 
     case ADDReply:
-      console.log(action)
+      console.log(action.payload.newReply.listedReply);
       const comments = state.comments;
       const currentComment = comments.find(
-        (item) => item.id === action.payload.id
+        (item) => item.user.username === action.payload.newReply.listedReply
       );
+      console.log(currentComment.replies);
+
       currentComment.replies = [
         ...currentComment.replies,
         action.payload.newReply,
