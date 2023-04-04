@@ -60,9 +60,10 @@ const Replies = (props) => {
                     content={props.content}
                     setContent={props.setContent}
                     addComment={props.addComment}
-                    parentUser={props.parentUser}
                     setParentUser={props.parentUser}
-                    ReplyToComment={props.currentReplayIdClicked}
+                    
+                    ReplyToComment={props.ReplyToReplies}
+                    // ReplyToComment={props.currentReplayIdClicked}
                   />
                   {/* inRep={props.inRep} repliedTo={data.user.username} */}
                 </li>

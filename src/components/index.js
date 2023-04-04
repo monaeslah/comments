@@ -64,6 +64,7 @@ const Index = () => {
   };
   const openModal = () => {
     setModal(true);
+    alert()
   };
   return (
     <div className="app-bg">

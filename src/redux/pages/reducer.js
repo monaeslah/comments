@@ -5,7 +5,7 @@ import {
   UPVOTECOMMENT,
   UPVOTE_REPLY,
   DOWNVOTE_COMMENT,
-  DOWNVOTE_REPLY
+  DOWNVOTE_REPLY,
 } from "./type";
 const data = require("./data.json");
 const initialState = {
@@ -29,20 +29,11 @@ export const Comment = (state = data, action) => {
     case ADDCOMMENT:
       return {
         ...state,
-        comments: [...state.comments, 
-        
-          {
-            id: action.payload.id,
-            user: action.payload.user.username,
-            content: action.content,
-            score: 0, // set initial score to 0
-            replies: [],
-            createdAt:new Date()
-          },
-        ],
+        comments: [...state.comments, action.payload],
       };
 
     case ADDReply:
+      console.log(action)
       const comments = state.comments;
       const currentComment = comments.find(
         (item) => item.id === action.payload.id
@@ -65,41 +56,40 @@ export const Comment = (state = data, action) => {
         comments: state.comments.filter((item, index) => item.id !== action.id),
       };
     case UPVOTECOMMENT:
-     
       return {
         ...state,
         comments: state.comments.map((comment) => {
           if (comment.id === action.payload.commentId) {
             return {
               ...comment,
-              score: comment.score + 1
+              score: comment.score + 1,
             };
           }
           return comment;
-        })
+        }),
       };
-    case DOWNVOTE_COMMENT: 
-    console.log("UPVOTE_COMMENT",action)
+    case DOWNVOTE_COMMENT:
+      console.log("UPVOTE_COMMENT", action);
       return {
-      ...state,
-      comments: state.comments.map((comment) => {
-        if (comment.id === action.payload.commentId) {
-          return {
-            ...comment,
-            score: comment.score - 1
-          };
-        }
-        return comment;
-      })
-    };
-      case UPVOTE_REPLY:
-        console.log("action id is", action);
-        const replies = state.comments.replies;
-        return {
-          ...state,
-          comments: replies.score + 1
-        };
-       
+        ...state,
+        comments: state.comments.map((comment) => {
+          if (comment.id === action.payload.commentId) {
+            return {
+              ...comment,
+              score: comment.score - 1,
+            };
+          }
+          return comment;
+        }),
+      };
+    case UPVOTE_REPLY:
+      console.log("action id is", action);
+      const replies = state.comments.replies;
+      return {
+        ...state,
+        comments: replies.score + 1,
+      };
+
     default:
       return state;
   }

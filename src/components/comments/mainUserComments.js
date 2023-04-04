@@ -17,7 +17,7 @@ const MainUser = (props) => {
             cancel={props.cancel}
             delet={props.delet}
           />
-          <button onClick={props.openModal}>Delet</button>
+          <button onClick={()=>props.openModal()}>Delet</button>
           <button>Edit</button>
         </div>
       </>

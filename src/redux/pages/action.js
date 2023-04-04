@@ -6,28 +6,28 @@ import {
   UPVOTECOMMENT,
   UPVOTE_REPLY,
   DOWNVOTE_COMMENT,
-  DOWNVOTE_REPLY
+  DOWNVOTE_REPLY,
 } from "./type";
 // import data from "../../assets/images/avatars"
 
-export const upvoteComment = (commentId,score) => {
+export const upvoteComment = (commentId, score) => {
   return {
     type: UPVOTECOMMENT,
-    payload: {commentId,score},
+    payload: { commentId, score },
   };
 };
 
-export const upvoteReply = (commentId,score) => {
+export const upvoteReply = (commentId, score) => {
   return {
     type: UPVOTE_REPLY,
-    payload: {commentId,score},
+    payload: { commentId, score },
   };
 };
 
-export const downvoteComment = ( commentId,score) => {
+export const downvoteComment = (commentId, score) => {
   return {
     type: DOWNVOTE_COMMENT,
-    payload:  {commentId,score},
+    payload: { commentId, score },
   };
 };
 
@@ -39,7 +39,7 @@ export const downvoteReply = (id) => {
 };
 export const deletAction = (id) => ({
   type: DELETE,
-  id
+  id,
 });
 export function uniqueId() {
   return Math.random() * 1000;
@@ -49,9 +49,8 @@ export const addCommentAction = (content, createdAt, id) => ({
   payload: {
     id: uniqueId(),
     content: content,
-
-    
-    createdAt,
+    score: 0, // set initial score to 0
+    createdAt: new Date(),
     user: {
       username: data.currentUser.username,
       image: data.currentUser.image.png,

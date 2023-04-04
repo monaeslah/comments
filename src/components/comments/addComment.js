@@ -12,7 +12,7 @@ const Comment = (props) => {
       return "";
     }
   });
-  const [typeidReplay, setTypeidReplay] = useState(replyTo);
+  const [typeidReplay, setTypeidReplay] = useState(replyTo.replace(/[^a-zA-Z ]/g, ""));
 
   useEffect(() => {
     setComment(props.data);
@@ -27,24 +27,17 @@ const Comment = (props) => {
   });
 
   // ()=>
-  
+
   const send = () => {
     if (props.hasOwnProperty("replyingTo")) {
-      console.log("string")
-       const init=()=> {
-        this.child.parent = this;
-        delete this.init;
-        return this;
-    }
-console.log("init",init)
+      props.setContent(typeidReplay);
+      props.ReplyToComment(typeidReplay,);
+    } else {
+      console.log("not a string");
 
       props.setContent(typeidReplay);
-      props.ReplyToComment(typeidReplay);
-    }
-    else {
-      props.setContent(typeidReplay);
       props.addComment(typeidReplay);
-    } 
+    }
   };
 
   return (
