@@ -76,7 +76,7 @@ export const addReplyAction = (
       currentReplayIdClicked,
       content,
       listedReply,
-      replyingTo,
+      replyingTo:listedReply,
     
       user: {
         image: {

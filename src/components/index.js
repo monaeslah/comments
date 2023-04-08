@@ -25,22 +25,12 @@ const Index = () => {
     dispatch(addCommentAction(content));
   };
   const ReplyToComment = (username, id) => {
-    console.log(replyingTo);
+    console.log("replyingTo",replyingTo);
     dispatch(addReplyAction(currentReplayIdClicked, content, replyingTo));
     setInRep(false);
   };
 
   const ReplyToReplies = (username, listedReply) => {
-    console.log(
-      "currentReplayIdClicked ",
-      currentReplayIdClicked,
-      "listedReply",
-      listedReply,
-      "content",
-      content,
-      "replyingTo",
-      replyingTo
-    );
     dispatch(
       addReplyToRepliesAction(
         currentReplayIdClicked,

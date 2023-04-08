@@ -33,7 +33,7 @@ const Comment = (props) => {
       console.log("string",props.listedReply,props.replyingTo);
       
       props.setContent(typeidReplay);
-      props.ReplyToComment(typeidReplay,props.listedReply);
+      props.ReplyToReplies(typeidReplay,props.listedReply);
     } 
     else if (props.hasOwnProperty("replyingTo")) {
       console.log("replyingTo",props.listedReply,props.replyingTo);
