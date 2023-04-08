@@ -33,12 +33,12 @@ export const Comment = (state = data, action) => {
       };
 
     case ADDReply:
-      console.log(action.payload.newReply.listedReply);
+      console.log(action.payload.newReply);
       const comments = state.comments;
       const currentComment = comments.find(
         (item) => item.user.username === action.payload.newReply.listedReply
       );
-      console.log(currentComment.replies);
+      console.log("currentComment",currentComment);
 
       currentComment.replies = [
         ...currentComment.replies,
@@ -46,9 +46,9 @@ export const Comment = (state = data, action) => {
       ];
       return {
         ...state,
-        comments: [
-          ...comments.filter((item) => item.id !== action.payload.id),
-          currentComment,
+        replies: [
+          // ...comments.filter((item) => item.id !== action.payload.id),
+          currentComment.replies,
         ].sort((a, b) => (a.id > b.id ? 1 : -1)),
       };
 
