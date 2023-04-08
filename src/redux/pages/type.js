@@ -1,7 +1,7 @@
 export const ADDCOMMENT = "ADDCOMMENT";
 export const ADDReply = "ADDReply";
 export const DELETE = "DELETE";
-export const ADDReplyToReply = "ADDReplyToReply";
+export const ADDReplyToCom = "ADDReplyToReply";
 export const UPVOTECOMMENT = "UPVOTECOMMENT";
 export const UPVOTE_REPLY = "UPVOTE_REPLY";
 export const DOWNVOTE_COMMENT = "DOWNVOTE_COMMENT";

@@ -7,6 +7,7 @@ import {
   UPVOTE_REPLY,
   DOWNVOTE_COMMENT,
   DOWNVOTE_REPLY,
+  ADDReplyToCom
 } from "./type";
 // import data from "../../assets/images/avatars"
 
@@ -62,20 +63,21 @@ export const addCommentAction = (content, createdAt, id) => ({
 export const addReplyAction = (
   currentReplayIdClicked,
   content,
-  createdAt,
-  score,
+  listedReply,
   replyingTo,
-  username
 ) => ({
-  type: ADDReply,
+  type: ADDReplyToCom,
   payload: {
     id: currentReplayIdClicked,
-    newReply: {
+    newReplyToCm: {
       id: uniqueId(),
-      content: content,
-      createdAt,
-      score,
+      score: 0, // set initial score to 0
+      createdAt: new Date(),
+      currentReplayIdClicked,
+      content,
+      listedReply,
       replyingTo,
+    
       user: {
         image: {
           png: data.currentUser.image.png,

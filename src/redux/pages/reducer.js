@@ -6,6 +6,7 @@ import {
   UPVOTE_REPLY,
   DOWNVOTE_COMMENT,
   DOWNVOTE_REPLY,
+  ADDReplyToCom
 } from "./type";
 const data = require("./data.json");
 const initialState = {
@@ -32,6 +33,25 @@ export const Comment = (state = data, action) => {
         comments: [...state.comments, action.payload],
       };
 
+      case ADDReplyToCom:
+        console.log("newReplyToCm",action.payload.newReplyToCm);
+        const allComments = state.comments;
+        const setCurrentComment = allComments.find(
+          (item) => item.user.username === action.payload.newReplyToCm.listedReply
+        );
+        console.log("currentComment",setCurrentComment);
+  
+        setCurrentComment.replies = [
+          ...setCurrentComment.replies,
+          action.payload.newReplyToCm,
+        ];
+        return {
+          ...state,
+          replies: [
+            // ...comments.filter((item) => item.id !== action.payload.id),
+            setCurrentComment.replies,
+          ].sort((a, b) => (a.id > b.id ? 1 : -1)),
+        };
     case ADDReply:
       console.log(action.payload.newReply);
       const comments = state.comments;
