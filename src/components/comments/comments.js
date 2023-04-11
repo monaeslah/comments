@@ -26,7 +26,6 @@ const Box = (props) => {
                   prevscore={comment.score}
                   comment={comment}
                   setReplies={props.setReplies}
-                  setScore={props.setScore}
                 />
                 <div className=" widths">
                   <div className="flex justify_between">

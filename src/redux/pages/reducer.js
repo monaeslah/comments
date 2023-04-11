@@ -34,12 +34,10 @@ export const Comment = (state = data, action) => {
       };
 
       case ADDReplyToCom:
-        console.log("newReplyToCm",action.payload.newReplyToCm);
         const allComments = state.comments;
         const setCurrentComment = allComments.find(
           (item) => item.user.username === action.payload.newReplyToCm.listedReply
         );
-        console.log("currentComment",setCurrentComment);
   
         setCurrentComment.replies = [
           ...setCurrentComment.replies,
@@ -53,12 +51,11 @@ export const Comment = (state = data, action) => {
           ].sort((a, b) => (a.id > b.id ? 1 : -1)),
         };
     case ADDReply:
-      console.log(action.payload.newReply);
       const comments = state.comments;
       const currentComment = comments.find(
         (item) => item.user.username === action.payload.newReply.listedReply
       );
-      console.log("currentComment",currentComment);
+      
 
       currentComment.replies = [
         ...currentComment.replies,
@@ -67,7 +64,6 @@ export const Comment = (state = data, action) => {
       return {
         ...state,
         replies: [
-          // ...comments.filter((item) => item.id !== action.payload.id),
           currentComment.replies,
         ].sort((a, b) => (a.id > b.id ? 1 : -1)),
       };
@@ -91,7 +87,6 @@ export const Comment = (state = data, action) => {
         }),
       };
     case DOWNVOTE_COMMENT:
-      console.log("UPVOTE_COMMENT", action);
       return {
         ...state,
         comments: state.comments.map((comment) => {
@@ -104,14 +99,66 @@ export const Comment = (state = data, action) => {
           return comment;
         }),
       };
-    case UPVOTE_REPLY:
-      console.log("action id is", action);
-      const replies = state.comments.replies;
-      return {
-        ...state,
-        comments: replies.score + 1,
-      };
+    case  UPVOTE_REPLY :
+      console.log("UPVOTE_REPLY:", action);
+      const searchIdT = action.payload.commentId;
+    
+      // Search in comments array
+      const commentT = state.comments.find(comment => comment.id === searchIdT);
+      if (commentT) {
+        return commentT;
+      }
 
+      // Search in replies array
+      const updatedComments = state.comments.map(comment => {
+        const updatedReplies = comment.replies.map(reply => {
+          if (reply.id === searchIdT) {
+            // Increment score by 1
+            return {
+              ...reply,
+              score: reply.score + 1,
+            };
+          }
+          return reply;
+        });
+
+        return {
+          ...comment,
+          replies: updatedReplies,
+        };
+      });
+
+      return { ...state, comments: updatedComments };
+      case DOWNVOTE_REPLY:
+        console.log("DOWNVOTE_REPLY:", action);
+        const searchId = action.payload.commentId;
+      
+        // Search in comments array
+        const comment = state.comments.find(comment => comment.id === searchId);
+        if (comment) {
+          return comment;
+        }
+  
+        // Search in replies array
+        const updatedCommentsT = state.comments.map(comment => {
+          const updatedReplies = comment.replies.map(reply => {
+            if (reply.id === searchId) {
+              // Increment score by 1
+              return {
+                ...reply,
+                score: reply.score - 1,
+              };
+            }
+            return reply;
+          });
+  
+          return {
+            ...comment,
+            replies: updatedReplies,
+          };
+        });
+  console.log("updatedCommentsT",updatedCommentsT)
+        return { ...state, comments: updatedCommentsT };
     default:
       return state;
   }

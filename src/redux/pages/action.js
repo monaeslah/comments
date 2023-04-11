@@ -32,10 +32,10 @@ export const downvoteComment = (commentId, score) => {
   };
 };
 
-export const downvoteReply = (id) => {
+export const downvoteReply = (commentId, score) => {
   return {
     type: DOWNVOTE_REPLY,
-    payload: id,
+    payload:  { commentId, score },
   };
 };
 export const deletAction = (id) => ({
@@ -74,7 +74,7 @@ export const addReplyAction = (
       score: 0, // set initial score to 0
       createdAt: new Date(),
       currentReplayIdClicked,
-      content,
+      content:content.split(",").splice(1).join(","),
       listedReply,
       replyingTo:listedReply,
     
@@ -102,7 +102,7 @@ export const addReplyToRepliesAction = (
       score: 0, // set initial score to 0
       createdAt: new Date(),
       currentReplayIdClicked,
-      content,
+      content:content.split(",").splice(1).join(","),
       listedReply,
       replyingTo,
     

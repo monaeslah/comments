@@ -13,7 +13,7 @@ const Replies = (props) => {
         return (
           <ul>
             <li className=" flex justify_between" key={data.id + "id"}>
-            <Buttons prevscore={data.score} id={data.id} audience={data.replyingTo}
+            <Buttons prevscore={data.score} id={data.id} replyingTo={data.replyingTo}
             
             />
 
