@@ -14,7 +14,7 @@ const OtherUsers = (props) => {
     
         <button
           onClick={() => {
-            console.log(props)
+           
             props.getUserId(props.comments.user.username, props.comments.id);
           }}
         >

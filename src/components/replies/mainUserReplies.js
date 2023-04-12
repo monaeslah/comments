@@ -25,7 +25,7 @@ const MainUserReplies = (props) => {
           />
           <button className="action_delet" onClick={()=>props.openModal()}><img className="score" src={delet} alt="" /> Delet</button>
           <button><img className="score" src={edit} alt="" /> Edit</button>
-          <li className={`flex justify_between ${showHideClassName}`}>
+          <div className={`flex justify_between ${showHideClassName}`}>
                     <AddComment
                       data={props.data}
                       inRep={props.inRep}
@@ -34,7 +34,7 @@ const MainUserReplies = (props) => {
                       content={props.content}
                       setContent={props.setContent}
                     />
-                  </li>
+                  </div>
         </div>
       </>
         

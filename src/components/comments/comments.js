@@ -7,6 +7,7 @@ import OtherUsers from "./OtherUsers";
 const Box = (props) => {
   const [items, setItems] = useState(props.data);
   const [usrname, setUsername] = useState(props.data?.currentUser?.username);
+  const [isEditable, setEditable] = useState(false);
   const showHideClassName = props.inRep ? "display-block" : "display-none";
   useEffect(() => {
     setItems(props.data);
@@ -21,6 +22,18 @@ const Box = (props) => {
         {props.data?.comments?.map((comment) => {
           return (
             <>
+               {isEditable? <li className={`flex justify_between ${showHideClassName}`}>
+          <AddComment
+            data={props.data}
+            inRep={props.inRep}
+            replyingTo={props.replyingTo}
+            addComment={props.addComment}
+            ReplyToComment={props.ReplyToComment}
+            content={props.content}
+            setContent={props.setContent}
+          />
+        
+            </li>:
               <li className="flex" key={comment.id + "number"}>
                 <Buttons
                   prevscore={comment.score}
@@ -38,6 +51,8 @@ const Box = (props) => {
                         cancel={props.cancel}
                         delet={props.delet}
                         replyingTo={comment.user.username}
+                        isEditable={isEditable}
+                        setEditable={setEditable}
                       />
                     ) : (
                       <OtherUsers
@@ -48,7 +63,7 @@ const Box = (props) => {
                   </div>
                   <p>{comment.content}</p>
                 </div>
-              </li>
+              </li>}
               {comment.user.username === usrname ? (
                 <></> //can not reply to your own comments
               ) : (
@@ -66,49 +81,46 @@ const Box = (props) => {
                   </li>
                 )
               )}
-             
+
               {comment.replies.length === 0 ? (
                 ""
               ) : (
                 <>
-                 <div className="list-container ">
-
-                  <CommentsReplies
-                    data={props.data}
-                    currentReplayIdClicked={props.currentReplayIdClicked}
-                    comment={comment}
-                    replies={comment.replies}
-                    usrname={usrname}
-                    ReplyToReplies={props.ReplyToReplies}
-                    getUserId={props.getUserId}
-                    inRep={props.inRep}
-                    setInRep={props.setInRep}
-                    ReplyToComment={props.ReplyToComment}
-                    content={props.content}
-                    setContent={props.setContent}
-                    addComment={props.addComment}
-                    parentUser={props.parentUser}
-                    setParentUser={props.parentUser}
-                    score={props.score}
-                    setScore={props.setScore}
-                    openModal={props.openModal}
-                    delet={props.delet}
-                    modal={props.modal}
-                  />
-                 </div>
+                  <div className="list-container ">
+                    <CommentsReplies
+                      data={props.data}
+                      currentReplayIdClicked={props.currentReplayIdClicked}
+                      comment={comment}
+                      replies={comment.replies}
+                      usrname={usrname}
+                      ReplyToReplies={props.ReplyToReplies}
+                      getUserId={props.getUserId}
+                      inRep={props.inRep}
+                      setInRep={props.setInRep}
+                      ReplyToComment={props.ReplyToComment}
+                      content={props.content}
+                      setContent={props.setContent}
+                      addComment={props.addComment}
+                      parentUser={props.parentUser}
+                      setParentUser={props.parentUser}
+                      score={props.score}
+                      setScore={props.setScore}
+                      openModal={props.openModal}
+                      delet={props.delet}
+                      modal={props.modal}
+                    />
+                  </div>
                 </>
               )}
-              
-           
             </>
           );
         })}
-         <AddComment
-         data={props.data}
-        addComment={props.addComment}
-        content={props.content}
-        setContent={props.setContent}
-      />
+        <AddComment
+          data={props.data}
+          addComment={props.addComment}
+          content={props.content}
+          setContent={props.setContent}
+        />
       </ul>
     </>
   );
