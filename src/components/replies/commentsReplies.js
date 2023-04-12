@@ -12,16 +12,17 @@ const Replies = (props) => {
       {props?.replies.map((data) => {
         return (
           <ul>
+         
             <li className=" flex justify_between" key={data.id + "id"}>
             <Buttons prevscore={data.score} id={data.id} replyingTo={data.replyingTo}
             
             />
-
+      
+ 
               <div className="replies widths">
                 <div className="flex justify_between">
                   {data.user.username === props.usrname ? ( //userSec
                     <MainUserReplies
-                      comments={props.comment}
                       openModal={props.openModal}
                       close={props.close}
                       modal={props.modal}
@@ -69,6 +70,7 @@ const Replies = (props) => {
               )
             )}
           </ul>
+         
         );
       })}
     </>

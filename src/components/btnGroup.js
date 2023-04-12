@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { upvoteComment, downvoteComment, upvoteReply, downvoteReply } from "../redux/pages/action";
-
+import plus from "../assets/images/icon-plus.svg"
+import minus from "../assets/images/icon-minus.svg"
 const Buttons = (props) => {
   const dispatch = useDispatch();
   const handleLikeClick = (commentId, score) => {
@@ -33,13 +34,13 @@ const Buttons = (props) => {
           handleLikeClick(props.comment?.id, props.id, props.prevscore)
         }
       >
-        +
+           <img className="plus"  src={plus} alt="plus" />
       </button>
       <p>{props.prevscore}</p>
       <button
         onClick={() => handleDislikeClick(props.comment?.id, props.id,props.prevscore)}
       >
-        -
+        <img className="minus"  src={minus} alt="minus" />
       </button>
     </div>
   );

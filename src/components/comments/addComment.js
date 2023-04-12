@@ -13,7 +13,6 @@ const Comment = (props) => {
     }
   });
   const [typeidReplay, setTypeidReplay] = useState(replyTo);
-  const [newTypeidReplay, setNewTypeidReplay] = useState("");
   //replyTo.replace(/[^a-zA-Z ]/g, "")
   useEffect(() => {
     setComment(props.data);
@@ -58,8 +57,9 @@ const Comment = (props) => {
           onChange={replayToCommentsOnChange}
           value={typeidReplay}
         />
+       
         <button className="send" onClick={send}>
-          Send
+         {props.hasOwnProperty("replyingTo")?"REPLY":"Send"}
         </button>
       </div>
     </>

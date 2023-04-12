@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import Buttons from "../btnGroup";
 import CommentsReplies from "../replies/commentsReplies";
-import ADDComment from "./addComment";
+import AddComment from "./addComment";
 import MainUser from "./mainUserComments";
 import OtherUsers from "./OtherUsers";
 const Box = (props) => {
@@ -37,6 +37,7 @@ const Box = (props) => {
                         modal={props.modal}
                         cancel={props.cancel}
                         delet={props.delet}
+                        replyingTo={comment.user.username}
                       />
                     ) : (
                       <OtherUsers
@@ -53,7 +54,7 @@ const Box = (props) => {
               ) : (
                 comment.id === props.currentReplayIdClicked && (
                   <li className={`flex justify_between ${showHideClassName}`}>
-                    <ADDComment
+                    <AddComment
                       data={props.data}
                       inRep={props.inRep}
                       replyingTo={comment.user.username}
@@ -65,10 +66,13 @@ const Box = (props) => {
                   </li>
                 )
               )}
+             
               {comment.replies.length === 0 ? (
                 ""
               ) : (
                 <>
+                 <div className="list-container ">
+
                   <CommentsReplies
                     data={props.data}
                     currentReplayIdClicked={props.currentReplayIdClicked}
@@ -87,12 +91,24 @@ const Box = (props) => {
                     setParentUser={props.parentUser}
                     score={props.score}
                     setScore={props.setScore}
+                    openModal={props.openModal}
+                    delet={props.delet}
+                    modal={props.modal}
                   />
+                 </div>
                 </>
               )}
+              
+           
             </>
           );
         })}
+         <AddComment
+         data={props.data}
+        addComment={props.addComment}
+        content={props.content}
+        setContent={props.setContent}
+      />
       </ul>
     </>
   );

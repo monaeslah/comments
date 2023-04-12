@@ -1,5 +1,11 @@
 .App {
   background-color: #f5f6fa;
+  color: #6A7076;
+  font-weight: bold;
+  img{
+    width: 1.91em;
+    height: 1.91em;
+  }
   .app-bg {
     .display_page {
       padding: 0;
@@ -11,9 +17,15 @@
         margin: 1em 0;
         padding: 1em 0.2em;
         background-color: #ffffff;
+        font-weight: 500;
         img {
           width: 30px;
           height: 30px;
+        }
+        .score{
+          width: 1em;
+          height: 1em;
+          margin-right: 4px;
         }
         .btn-group {
           display: grid;
@@ -25,6 +37,17 @@
           color: #5156b3;
           text-align: center;
           background-color: #f5f4f6;
+          button{
+            color: #C8C7DD;
+           .plus{
+            width: 9px;
+            height: 9px;
+           }
+           .minus{
+            width: 9px;
+            height: 2px;
+           }
+          }
         }
         .widths {
           width: 100%;
@@ -36,6 +59,22 @@
               margin: 0.4em;
             }
           }
+          .action_btn{
+            button{
+              color:#6165B1;
+              font-weight: bold
+            }
+            button:hover{
+              color: #CFD0DD;
+            }
+            .action_delet{
+              color: #D5777F;
+            }
+            .action_delet:hover{
+              color: #FDB9BB;
+            }
+          }
+         
         }
         .current_usr {
           width: 2.5em;
@@ -61,10 +100,16 @@
         }
       }
       @import "./modal.scss";
-
-      ul {
-        padding-left: 4em;
+      .list-container{
+        border-left: #EAEEED 2px solid;
+        margin-left: 2em;
       }
+      ul {
+        padding-left: 2em;
+       
+      }
+    
+
       .replies {
         p {
           span {
@@ -72,6 +117,7 @@
           }
         }
       }
+    
     }
     .prf_img {
       margin: 1.1em;
@@ -80,7 +126,7 @@
       background-color: #ffffff;
       .comment_content {
         width: 100%;
-        border: 1px solid #f5f5f5;
+        border: 1px solid #D8D8E1;
         border-radius: 3px;
         margin: 1em 0;
         padding: 10px 5px;
@@ -90,7 +136,7 @@
       .send {
         width: 6em;
         height: 2em;
-        margin: 15px 10px;
+        margin: 22px 10px;
         color: #ffffff;
         border-radius: 3px;
         background-color: #5156b3;

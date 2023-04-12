@@ -1,4 +1,5 @@
 import React from "react";
+import reply from "../../assets/images/icon-reply.svg"
 
 const OtherUsersReply = (props) => {
 
@@ -15,7 +16,7 @@ const OtherUsersReply = (props) => {
           onClick={() => {
             props.getUserId(props.username.user.username, props.username.id);
           }}
-        >
+        ><img className="score" src={reply} alt="" />
           reply
         </button>
       </div>

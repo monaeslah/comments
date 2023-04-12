@@ -6,23 +6,10 @@ import {
   UPVOTE_REPLY,
   DOWNVOTE_COMMENT,
   DOWNVOTE_REPLY,
-  ADDReplyToCom
+  ADDReplyToCom,DELETEREP
 } from "./type";
 const data = require("./data.json");
-const initialState = {
-  comments: data.comments.map((comment) => {
-    return {
-      ...comment,
-      score: 0,
-      replies: comment.replies.map((reply) => {
-        return {
-          ...reply,
-          score: 0,
-        };
-      }),
-    };
-  }),
-};
+
 
 const keys = Object.keys(data);
 export const Comment = (state = data, action) => {
@@ -73,6 +60,15 @@ export const Comment = (state = data, action) => {
         ...state,
         comments: state.comments.filter((item, index) => item.id !== action.id),
       };
+      case DELETEREP:
+        const AllReplies=state.comments
+        console.log(AllReplies)
+        const hello=AllReplies.map((comment)=>({
+          ...comment,
+            replies:comment.replies.filter((reply, index) => reply.id !== action.id)
+          }))
+        console.log(hello)
+        return {...state,comments:hello}
     case UPVOTECOMMENT:
       return {
         ...state,

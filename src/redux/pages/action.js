@@ -7,10 +7,14 @@ import {
   UPVOTE_REPLY,
   DOWNVOTE_COMMENT,
   DOWNVOTE_REPLY,
-  ADDReplyToCom
+  ADDReplyToCom,
+  DELETEREP
 } from "./type";
 // import data from "../../assets/images/avatars"
-
+export const deletRepAction = (id) => ({
+  type: DELETEREP,
+  id,
+});
 export const upvoteComment = (commentId, score) => {
   return {
     type: UPVOTECOMMENT,
@@ -42,6 +46,7 @@ export const deletAction = (id) => ({
   type: DELETE,
   id,
 });
+
 export function uniqueId() {
   return Math.random() * 1000;
 }

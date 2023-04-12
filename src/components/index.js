@@ -57,7 +57,7 @@ const Index = () => {
   };
   const openModal = () => {
     setModal(true);
-    alert();
+    console.log(modal)
   };
   return (
     <div className="app-bg">
@@ -82,12 +82,7 @@ const Index = () => {
         replies={replies}
         setReplies={setReplies}
       />
-      <ADDComment
-        addComment={addComment}
-        data={data}
-        content={content}
-        setContent={setContent}
-      />
+     
     </div>
   );
 };

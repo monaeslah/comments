@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import {deletRepAction} from "../../redux/pages/action";
 
 const Modal = (props) => {
   const showHideClassName = props.modal
     ? "modal display-block"
     : "modal display-none";
+    const dispatch = useDispatch();
+const deletComment=(id)=>{
+  if (props.hasOwnProperty("replyingTo")) {
+    console.log(id)
+    dispatch(deletRepAction(id))
+  } else {
+    dispatch(  props.delet(id));
+    console.log(id)
 
+  }
+
+}
   return (
     <div className={showHideClassName}>
       <section className="modal-main">
@@ -19,7 +32,7 @@ const Modal = (props) => {
           <button
             type="button"
             className="c_delet"
-            onClick={() => props.delet(props.id)}
+            onClick={() => deletComment(props.id)}
           >
             YES, DELETE
           </button>

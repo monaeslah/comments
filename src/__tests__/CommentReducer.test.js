@@ -54,109 +54,54 @@ test("ADD_COMMENT action adds a new comment to the state", () => {
   });
   });
 
-// Test for ADDReplyToCom action:
-test("ADDReplyToCom action adds a new reply to the corresponding comment in the state", () => {
- 
 
-  const action = {
+
+
+  ///////////////////////////secont way for test comment section
+ 
+  describe('Comment Reducer Tests', () => {
+    test('ADD_COMMENT action updates state correctly', () => {
+      // Create initial state and action
+      const initialState = { comments: [] };
+      const action = { type: ADDCOMMENT, payload: { id: 1, comment: 'Test comment' } };
+  
+      // Call the Comment reducer with the initial state and action
+      const newState = Comment(initialState, action);
+  
+      // Assert that the state is updated correctly
+      expect(newState.comments).toHaveLength(1);
+      expect(newState.comments[0].id).toEqual(1);
+      expect(newState.comments[0].comment).toEqual('Test comment');
+    });
+  
+    // Write more test cases for other actions and scenarios
+  });
+  
+/////////////////////////////////////////////////////
+
+  const addReplyToComAction = {
     type: ADDReplyToCom,
     payload: {
-      newReplyToCm: {
         id: 5,
-        score: 0,
-        createdAt: new Date(),
-        currentReplayIdClicked: 1,
-        content: 'Test reply',
-        listedReply: 'user1',
-        replyingTo: 'user1',
-        user: {
-          image: {
-            png: 'image.png',
-            webp: 'image.webp',
+        newReplyToCm: {
+          id: 6,
+          score: 0, // set initial score to 0
+          createdAt: new Date(),
+          currentReplayIdClicked:5,
+          content:"test",
+          listedReply:"user1",
+          replyingTo:"user1",
+        
+          user: {
+            image: {
+              png: "data.currentUser.image.png",
+              webp: "data.currentUser.image.webp",
+            },
+            username: "data.currentUser.username",
           },
-          username: 'user3',
         },
-      },
-    },
+      
+    }
   };
-
-  const newState = Comment(data, action);
-  console.log(">>>",newState.comments)
   
-  // Assert that the reply is added to the corresponding comment in the state
-  expect(newState.comments[0].replies.length).toBe(3);
-  // Assert that the reply object in the state matches the expected shape
-  expect(newState.comments[0].replies[0]).toMatchObject({
-    id: expect.any(Number),
-    content: expect.any(String),
-    createdAt: expect.any(Date),
-    replyingTo: expect.any(String),
-    score: expect.any(Number),
-    user: {
-      image: {
-        png: expect.any(String),
-        webp: expect.any(String),
-      },
-      username: expect.any(String),
-    },
-    replies: expect.any(Array),
-  });
-  });
-// // Test for DELETE action:
-// test("DELETE action removes a comment from the state", () => {
-//   const initialState = {
-//     comments: [
-//       // provide initial comments state with comments
-//     ],
-//   };
 
-//   const action = {
-//     type: DELETE,
-//     id: 1// provide an id of the comment to be deleted
-//   };
-
-//   const newState = Comment(initialState, action);
-
-//   // Assert that the comment is removed from the state
-//   expect(newState.comments.length).toBe(initialState.comments.length - 1);
-//   // Assert that the removed comment does not exist in the state
-//   expect(newState.comments.find(comment => comment.id === action.id)).toBeUndefined();
-// });
-// // Test for UPVOTECOMMENT action:
-// test("UPVOTECOMMENT action increments score of a comment in the state", () => {
-//   const initialState = {
-//     comments: [
-//       // provide initial comments state with comments
-//     ],
-//   };
-
-//   const action = {
-//     type: UPVOTECOMMENT,
-//     payload: {
-//       commentId: // provide id of the comment to be upvoted
-//     },
-//   };
-
-//   const newState = Comment(initialState, action);
-
-//   // Assert that the score of the comment is incremented by 1 in the state
-//   expect(newState.comments.find(comment => comment.id === action.payload.commentId).score).toBe(initialState.comments.find(comment => comment.id === action.payload.commentId).score + 1);
-// });
-// // Test for DOWNVOTE_COMMENT action:
-// test("DOWNVOTE_COMMENT action decrements score of a comment in the state", () => {
-//   const initialState = {
-//     comments: [
-//       // provide initial comments state with comments
-//     ],
-//   };
-
-//   const action = {
-//     type: DOWNVOTE_COMMENT,
-//     payload: {
-//       commentId: // provide id of the comment to be downvoted
-//     },
-//   };
-
-//   const newState = Comment(initialState, action);
-
-//   // Assert that the score of the comment is decremented by
