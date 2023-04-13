@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Buttons from "../btnGroup";
 import CommentsReplies from "../replies/commentsReplies";
 import AddComment from "./addComment";
@@ -8,6 +8,7 @@ const Box = (props) => {
   const [items, setItems] = useState(props.data);
   const [usrname, setUsername] = useState(props.data?.currentUser?.username);
   const [isEditable, setEditable] = useState(false);
+  const [updatedContent, setUpdatedContent] = useState("");
   const showHideClassName = props.inRep ? "display-block" : "display-none";
   useEffect(() => {
     setItems(props.data);
@@ -15,55 +16,72 @@ const Box = (props) => {
   useEffect(() => {
     setUsername(props.data?.currentUser.username);
   }, [props.data?.currentUser?.username]);
+  const updateComment = ((event) => {
+   
 
+    setUpdatedContent(event.target.value);
+  });
   return (
     <>
       <ul className="display_page">
         {props.data?.comments?.map((comment) => {
           return (
             <>
-               {isEditable? <li className={`flex justify_between ${showHideClassName}`}>
-          <AddComment
-            data={props.data}
-            inRep={props.inRep}
-            replyingTo={props.replyingTo}
-            addComment={props.addComment}
-            ReplyToComment={props.ReplyToComment}
-            content={props.content}
-            setContent={props.setContent}
-          />
-        
-            </li>:
-              <li className="flex" key={comment.id + "number"}>
-                <Buttons
-                  prevscore={comment.score}
-                  comment={comment}
-                  setReplies={props.setReplies}
-                />
-                <div className=" widths">
-                  <div className="flex justify_between">
-                    {comment?.user?.username === usrname ? (
-                      <MainUser
-                        comments={comment}
-                        openModal={props.openModal}
-                        close={props.close}
-                        modal={props.modal}
-                        cancel={props.cancel}
-                        delet={props.delet}
-                        replyingTo={comment.user.username}
-                        isEditable={isEditable}
-                        setEditable={setEditable}
-                      />
+             
+                <li className={`flex justify_between ${showHideClassName}`}>
+                  <AddComment
+                    data={props.data}
+                    inRep={props.inRep}
+                    replyingTo={props.replyingTo}
+                    addComment={props.addComment}
+                    ReplyToComment={props.ReplyToComment}
+                    content={props.content}
+                    setContent={props.setContent}
+                  />
+                </li>
+               
+                <li className="flex" key={comment.id + "number"}>
+                  <Buttons
+                    prevscore={comment.score}
+                    comment={comment}
+                    setReplies={props.setReplies}
+                  />
+                  <div className=" widths">
+                    <div className="flex justify_between">
+                      {comment?.user?.username === usrname ? (
+                        <MainUser
+                          comments={comment}
+                          openModal={props.openModal}
+                          close={props.close}
+                          modal={props.modal}
+                          cancel={props.cancel}
+                          delet={props.delet}
+                          replyingTo={comment.user.username}
+                          setEditable={setEditable}
+                          isEditable={isEditable}
+                          setCurrentReplayIdClicked={
+                            props.setCurrentReplayIdClicked
+                          }
+                          
+                        />
+                      ) : (
+                        <OtherUsers
+                          comments={comment}
+                          getUserId={props.getUserId}
+                        />
+                      )}
+                    </div>
+                  
+                    {comment.id === props.currentReplayIdClicked &&
+                    isEditable ? (
+                      <textarea   className="update_content" value={comment.content}  onChange={updateComment}/>
                     ) : (
-                      <OtherUsers
-                        comments={comment}
-                        getUserId={props.getUserId}
-                      />
+                      
+                      <p>{comment.content}</p>
                     )}
                   </div>
-                  <p>{comment.content}</p>
-                </div>
-              </li>}
+                </li>
+              
               {comment.user.username === usrname ? (
                 <></> //can not reply to your own comments
               ) : (

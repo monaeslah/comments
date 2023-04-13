@@ -63,6 +63,7 @@ const Index = () => {
     <div className="app-bg">
       <Comment
         currentReplayIdClicked={currentReplayIdClicked}
+        setCurrentReplayIdClicked={setCurrentReplayIdClicked}
         data={data}
         delet={delet}
         modal={modal}

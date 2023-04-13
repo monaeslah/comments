@@ -74,7 +74,23 @@
               color: #FDB9BB;
             }
           }
-         
+         .update_content{
+          width: 90%;
+          border: 1px solid #D8D8E1;
+          border-radius: 3px;
+          margin: 1em 0;
+          padding: 10px 5px;
+          font-size: 20px;
+          resize: none;
+        }
+        .update {
+          width: 6em;
+          height: 2em;
+          margin: 22px 10px;
+          color: #ffffff;
+          border-radius: 3px;
+          background-color: #5156b3;
+        }
         }
         .current_usr {
           width: 2.5em;
