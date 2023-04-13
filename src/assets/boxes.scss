@@ -118,7 +118,7 @@
       @import "./modal.scss";
       .list-container{
         border-left: #EAEEED 2px solid;
-        margin-left: 2em;
+    
       }
       ul {
         padding-left: 2em;
@@ -159,4 +159,24 @@
       }
     }
   }
+}
+@media screen and (max-width: 800px) {
+  body {
+    font-size: 0.7em;
+    .App .app-bg .display_page li
+    img {
+      width: 25px;
+      height: 25px;
+  } .widths 
+    .info img {
+      margin: 0.2em;
+  }
+    .action_btn button {
+      color: #6165B1;
+      font-weight: bold;
+      font-size: 0.9em;
+  }
+
+  
+}
 }

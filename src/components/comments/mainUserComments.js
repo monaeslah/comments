@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Modal from "../MainUser/delet";
 import delet from "../../assets/images/icon-delete.svg";
 import edit from "../../assets/images/icon-edit.svg";
@@ -7,10 +7,14 @@ const MainUser = (props) => {
   const showHideClassName = props.isEditable ? "display-block" : "display-none";
 
   const edit = (id) => {
-    console.log(props.isEditable, id);
+    console.log(props.comments, id);
     props.setEditable(true);
     props.setCurrentReplayIdClicked(id);
+    props.setUpdatedContent(props.comments.content)
   };
+ const upDatedCM=()=>{
+  props.addComment();
+ }
   return (
     <>
       <div className="info flex">
@@ -19,7 +23,7 @@ const MainUser = (props) => {
         <p className="current_usr">you</p>
       </div>
 
-   {  props.isEditable?<button className="update" onClick={props.send}>
+   {  props.isEditable?<button className="update" onClick={upDatedCM}>
          {"UPDATE"}
         </button> :<div className="flex action_btn">
         <Modal
